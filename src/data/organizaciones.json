@@ -1,0 +1,12 @@
+[
+  {
+    "id": "org-lsjm",
+    "nombre": "Liceo San José de la Montaña",
+    "codigo": "LSJM",
+    "direccionRegional": "Dirección Regional de Educación de Heredia",
+    "circuito": "Circuito 04",
+    "activa": true,
+    "creadaEn": "2026-01-01T00:00:00.000Z",
+    "actualizadaEn": "2026-01-01T00:00:00.000Z"
+  }
+]

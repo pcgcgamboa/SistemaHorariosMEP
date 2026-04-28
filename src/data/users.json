@@ -1,0 +1,25 @@
+[
+  {
+    "id": "u-admin",
+    "username": "admin",
+    "passwordHash": "",
+    "_seedPassword": "admin",
+    "nombreCompleto": "Administrador General",
+    "email": "admin@sistema.local",
+    "rol": "SUPER_ADMIN",
+    "organizacionId": null,
+    "activo": true,
+    "creadoEn": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "u-ggonzalez",
+    "username": "ggonzalez",
+    "passwordHash": "",
+    "_seedPassword": "mmaxwell22",
+    "nombreCompleto": "G. González",
+    "rol": "ORG_ADMIN",
+    "organizacionId": "org-lsjm",
+    "activo": true,
+    "creadoEn": "2026-01-01T00:00:00.000Z"
+  }
+]

@@ -1,0 +1,66 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Re-deploy en cada push a main
+  push:
+    branches: [main]
+  # Permite disparar manualmente desde la pestaña Actions
+  workflow_dispatch:
+
+# Permisos requeridos por la action oficial de Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Solo un deploy a la vez; si llega uno nuevo, espera a que termine.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Calcular BASE_PATH
+        # En repos `usuario.github.io` el sitio sirve en la raíz (`/`).
+        # En cualquier otro repo sirve bajo `/<repo>/`.
+        env:
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: |
+          if [[ "$REPO_NAME" == *.github.io ]]; then
+            echo "BASE_PATH=/" >> "$GITHUB_ENV"
+          else
+            echo "BASE_PATH=/$REPO_NAME/" >> "$GITHUB_ENV"
+          fi
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

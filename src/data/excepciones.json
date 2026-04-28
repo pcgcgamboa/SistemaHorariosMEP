@@ -1,0 +1,176 @@
+[
+  {
+    "id": "e001",
+    "nombre": "SEMANA SANTA",
+    "fechaInicio": "2022-04-11",
+    "fechaFin": "2022-04-15"
+  },
+  {
+    "id": "e002",
+    "nombre": "CONGRESO ANDE",
+    "fechaInicio": "2022-10-20",
+    "fechaFin": "2022-10-23"
+  },
+  {
+    "id": "e003",
+    "nombre": "REUNION FILIAL BASE ANDE",
+    "fechaInicio": "2022-05-31",
+    "fechaFin": "2022-05-31"
+  },
+  {
+    "id": "e004",
+    "nombre": "REUNION FILIAL BASE ANDE",
+    "fechaInicio": "2022-07-28",
+    "fechaFin": "2022-07-28"
+  },
+  {
+    "id": "e005",
+    "nombre": "DIA DE LA MADRE - FERIADO",
+    "fechaInicio": "2022-08-15",
+    "fechaFin": "2022-08-15"
+  },
+  {
+    "id": "e006",
+    "nombre": "FERIADO",
+    "fechaInicio": "2022-08-02",
+    "fechaFin": "2022-08-02"
+  },
+  {
+    "id": "e007",
+    "nombre": "CELEBRACIONES PATRIAS",
+    "fechaInicio": "2022-09-15",
+    "fechaFin": "2022-09-15"
+  },
+  {
+    "id": "e008",
+    "nombre": "FERIADO",
+    "fechaInicio": "2022-09-16",
+    "fechaFin": "2022-09-16"
+  },
+  {
+    "id": "e009",
+    "nombre": "FERIADO",
+    "fechaInicio": "2022-09-19",
+    "fechaFin": "2022-09-19"
+  },
+  {
+    "id": "e010",
+    "nombre": "FERIADO",
+    "fechaInicio": "2023-05-01",
+    "fechaFin": "2023-05-01"
+  },
+  {
+    "id": "e011",
+    "nombre": "VACACIONES",
+    "fechaInicio": "2023-07-03",
+    "fechaFin": "2023-07-14"
+  },
+  {
+    "id": "e012",
+    "nombre": "FERIADO",
+    "fechaInicio": "2023-07-24",
+    "fechaFin": "2023-07-24"
+  },
+  {
+    "id": "e013",
+    "nombre": "FERIADO",
+    "fechaInicio": "2023-07-28",
+    "fechaFin": "2023-07-28"
+  },
+  {
+    "id": "e014",
+    "nombre": "FERIADO",
+    "fechaInicio": "2023-09-18",
+    "fechaFin": "2023-09-18"
+  },
+  {
+    "id": "e015",
+    "nombre": "FERIADO",
+    "fechaInicio": "2023-09-15",
+    "fechaFin": "2023-09-15"
+  },
+  {
+    "id": "e016",
+    "nombre": "SEMANA SANTA",
+    "fechaInicio": "2024-03-25",
+    "fechaFin": "2024-03-29"
+  },
+  {
+    "id": "e017",
+    "nombre": "CONTROL BITACORA",
+    "fechaInicio": "2024-03-01",
+    "fechaFin": "2024-03-14"
+  },
+  {
+    "id": "e018",
+    "nombre": "HUELGA",
+    "fechaInicio": "2024-04-03",
+    "fechaFin": "2024-04-03"
+  },
+  {
+    "id": "e019",
+    "nombre": "FERIADO",
+    "fechaInicio": "2024-04-15",
+    "fechaFin": "2024-04-15"
+  },
+  {
+    "id": "e020",
+    "nombre": "FERIADO",
+    "fechaInicio": "2024-05-01",
+    "fechaFin": "2024-05-01"
+  },
+  {
+    "id": "e021",
+    "nombre": "FERIADO",
+    "fechaInicio": "2025-02-01",
+    "fechaFin": "2025-02-01"
+  },
+  {
+    "id": "e022",
+    "nombre": "FERIADO",
+    "fechaInicio": "2025-02-02",
+    "fechaFin": "2025-02-02"
+  },
+  {
+    "id": "e023",
+    "nombre": "FERIADO",
+    "fechaInicio": "2025-02-03",
+    "fechaFin": "2025-02-03"
+  },
+  {
+    "id": "e024",
+    "nombre": "FERIADO",
+    "fechaInicio": "2025-02-04",
+    "fechaFin": "2025-02-04"
+  },
+  {
+    "id": "e025",
+    "nombre": "FERIADO",
+    "fechaInicio": "2025-04-14",
+    "fechaFin": "2025-04-18"
+  },
+  {
+    "id": "e026",
+    "nombre": "FERIADO",
+    "fechaInicio": "2025-04-11",
+    "fechaFin": "2025-04-11"
+  },
+  {
+    "id": "e027",
+    "nombre": "FERIADO",
+    "fechaInicio": "2025-05-01",
+    "fechaFin": "2025-05-01"
+  },
+  {
+    "id": "e028",
+    "nombre": "FERIADO",
+    "fechaInicio": "2025-08-15",
+    "fechaFin": "2025-08-15"
+  },
+  {
+    "id": "e029",
+    "nombre": "FERIADO",
+    "fechaInicio": "2025-09-16",
+    "fechaFin": "2025-09-16"
+  }
+]
