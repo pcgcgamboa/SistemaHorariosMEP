@@ -8,13 +8,10 @@ on:
   workflow_dispatch:
 
 # Permisos requeridos por la action oficial de Pages.
-# `actions: write` es necesario para que `enablement: true` pueda activar
-# Pages automáticamente la primera vez.
 permissions:
   contents: read
   pages: write
   id-token: write
-  actions: write
 
 # Solo un deploy a la vez; si llega uno nuevo, espera a que termine.
 concurrency:
@@ -53,9 +50,6 @@ jobs:
       - run: pnpm build
 
       - uses: actions/configure-pages@v5
-        with:
-          # Auto-habilita Pages en el repo si todavía no está activado.
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
