@@ -1,11 +1,12 @@
 [
   {
-    "id": "p001",
+    "id": "p-alfaro-solis-karol-de-los-angeles",
+    "organizacionId": "org-lsjm",
     "nombre": "ALFARO SOLIS KAROL DE LOS ANGELES",
     "cargo": "INFORMATICA",
     "horarios": [
       {
-        "id": "hp001-1",
+        "id": "h-p-alfaro-solis-karol-de-los-angeles-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -24,12 +25,13 @@
     ]
   },
   {
-    "id": "p002",
+    "id": "p-alfaro-villalobos-maria-yamileth",
+    "organizacionId": "org-lsjm",
     "nombre": "ALFARO VILLALOBOS MARIA YAMILETH",
     "cargo": "HOGAR",
     "horarios": [
       {
-        "id": "hp002-1",
+        "id": "h-p-alfaro-villalobos-maria-yamileth-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -57,12 +59,41 @@
     ]
   },
   {
-    "id": "p003",
+    "id": "p-alvarado-parra-jimena",
+    "organizacionId": "org-lsjm",
+    "nombre": "ALVARADO PARRA JIMENA",
+    "cargo": "",
+    "horarios": [
+      {
+        "id": "h-p-alvarado-parra-jimena-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "14:05"
+          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-alvarado-reina-ariana-priscilla",
+    "organizacionId": "org-lsjm",
     "nombre": "ALVARADO REINA ARIANA PRISCILLA",
     "cargo": "",
     "horarios": [
       {
-        "id": "hp003-1",
+        "id": "h-p-alvarado-reina-ariana-priscilla-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -93,39 +124,13 @@
     ]
   },
   {
-    "id": "p004",
-    "nombre": "ZUÑIGA ARIAS MARIA",
-    "cargo": "ART PLASTICAS",
-    "horarios": [
-      {
-        "id": "hp004-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": null,
-          "martes": null,
-          "miercoles": null,
-          "jueves": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "viernes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p005",
+    "id": "p-arce-delgado-maria-fernanda",
+    "organizacionId": "org-lsjm",
     "nombre": "ARCE DELGADO MARIA FERNANDA",
     "cargo": "MUSICA",
     "horarios": [
       {
-        "id": "hp005-1",
+        "id": "h-p-arce-delgado-maria-fernanda-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -150,12 +155,13 @@
     ]
   },
   {
-    "id": "p006",
+    "id": "p-arce-ramirez-alejandra-maria",
+    "organizacionId": "org-lsjm",
     "nombre": "ARCE RAMIREZ ALEJANDRA MARIA",
     "cargo": "CIENCIAS",
     "horarios": [
       {
-        "id": "hp006-1",
+        "id": "h-p-arce-ramirez-alejandra-maria-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -186,12 +192,44 @@
     ]
   },
   {
-    "id": "p007",
+    "id": "p-arguedas-camacho-luis-diego",
+    "organizacionId": "org-lsjm",
+    "nombre": "ARGUEDAS CAMACHO LUIS DIEGO",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-arguedas-camacho-luis-diego-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "11:20"
+          },
+          "martes": null,
+          "miercoles": {
+            "entrada": "07:00",
+            "salida": "13:20"
+          },
+          "jueves": null,
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "11:20"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-arguedas-pizarro-wilberth-antonio",
+    "organizacionId": "org-lsjm",
     "nombre": "ARGUEDAS PIZARRO WILBERTH ANTONIO",
     "cargo": "REUBICADO",
     "horarios": [
       {
-        "id": "hp007-1",
+        "id": "h-p-arguedas-pizarro-wilberth-antonio-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -222,12 +260,13 @@
     ]
   },
   {
-    "id": "p008",
+    "id": "p-arias-redondo-manuel-de-jesus",
+    "organizacionId": "org-lsjm",
     "nombre": "ARIAS REDONDO MANUEL DE JESUS",
     "cargo": "ESTUDIOS SOC",
     "horarios": [
       {
-        "id": "hp008-1",
+        "id": "h-p-arias-redondo-manuel-de-jesus-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -258,12 +297,13 @@
     ]
   },
   {
-    "id": "p009",
+    "id": "p-arroyo-hernandez-gerald-santiago",
+    "organizacionId": "org-lsjm",
     "nombre": "ARROYO HERNANDEZ GERALD SANTIAGO",
     "cargo": "ANALISTA SIST.",
     "horarios": [
       {
-        "id": "hp009-1",
+        "id": "h-p-arroyo-hernandez-gerald-santiago-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -294,12 +334,13 @@
     ]
   },
   {
-    "id": "p010",
+    "id": "p-artavia-solis-oscar-eduardo",
+    "organizacionId": "org-lsjm",
     "nombre": "ARTAVIA SOLIS OSCAR EDUARDO",
-    "cargo": "ING. CONV.",
+    "cargo": " ING. CONV.",
     "horarios": [
       {
-        "id": "hp010-1",
+        "id": "h-p-artavia-solis-oscar-eduardo-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -330,147 +371,13 @@
     ]
   },
   {
-    "id": "p011",
-    "nombre": "AZOFEIFA SABORIO GABRIEL",
-    "cargo": "EDUC. FISICA",
-    "horarios": [
-      {
-        "id": "hp011-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": null,
-          "martes": {
-            "entrada": "07:00",
-            "salida": "09:55"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p012",
-    "nombre": "BARRANTES MIRANDA RODNY ANTONIO",
-    "cargo": "G.  SEGURIDAD",
-    "horarios": [
-      {
-        "id": "hp012-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "martes": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "miercoles": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "jueves": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "viernes": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p013",
-    "nombre": "BOGANTES MORALES MARCO VINICIO",
-    "cargo": "REUBICADO",
-    "horarios": [
-      {
-        "id": "hp013-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "06:00",
-            "salida": "11:20"
-          },
-          "martes": {
-            "entrada": "06:00",
-            "salida": "11:20"
-          },
-          "miercoles": {
-            "entrada": "06:00",
-            "salida": "11:20"
-          },
-          "jueves": {
-            "entrada": "06:00",
-            "salida": "11:20"
-          },
-          "viernes": {
-            "entrada": "06:00",
-            "salida": "11:20"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p014",
-    "nombre": "BONILLA CAMACHO REINALDO ALFREDO",
-    "cargo": "CONSERJE",
-    "horarios": [
-      {
-        "id": "hp014-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "05:50",
-            "salida": "13:50"
-          },
-          "martes": {
-            "entrada": "05:50",
-            "salida": "13:50"
-          },
-          "miercoles": {
-            "entrada": "05:50",
-            "salida": "13:50"
-          },
-          "jueves": {
-            "entrada": "05:50",
-            "salida": "13:50"
-          },
-          "viernes": {
-            "entrada": "05:50",
-            "salida": "13:50"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p015",
-    "nombre": "BRENES GONZALEZ SHIRLEY MARIA",
+    "id": "p-avila-hernandez-alberto",
+    "organizacionId": "org-lsjm",
+    "nombre": "AVILA HERNANDEZ ALBERTO",
     "cargo": "INFORMATICA  EDUC",
     "horarios": [
       {
-        "id": "hp015-1",
+        "id": "h-p-avila-hernandez-alberto-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -492,12 +399,165 @@
     ]
   },
   {
-    "id": "p016",
+    "id": "p-azofeifa-saborio-gabriel",
+    "organizacionId": "org-lsjm",
+    "nombre": "AZOFEIFA SABORIO GABRIEL",
+    "cargo": "EDUC. FISICA",
+    "horarios": [
+      {
+        "id": "h-p-azofeifa-saborio-gabriel-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": {
+            "entrada": "07:00",
+            "salida": "09:55"
+          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-barrantes-miranda-rodny-antonio",
+    "organizacionId": "org-lsjm",
+    "nombre": "BARRANTES MIRANDA RODNY ANTONIO",
+    "cargo": "G.  SEGURIDAD",
+    "horarios": [
+      {
+        "id": "h-p-barrantes-miranda-rodny-antonio-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": null,
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-bogantes-morales-marco-vinicio",
+    "organizacionId": "org-lsjm",
+    "nombre": "BOGANTES MORALES MARCO VINICIO",
+    "cargo": "REUBICADO",
+    "horarios": [
+      {
+        "id": "h-p-bogantes-morales-marco-vinicio-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "06:00",
+            "salida": "11:20"
+          },
+          "martes": {
+            "entrada": "06:00",
+            "salida": "11:20"
+          },
+          "miercoles": {
+            "entrada": "06:00",
+            "salida": "11:20"
+          },
+          "jueves": {
+            "entrada": "06:00",
+            "salida": "11:20"
+          },
+          "viernes": {
+            "entrada": "06:00",
+            "salida": "11:20"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-bonilla-camacho-reinaldo-alfredo",
+    "organizacionId": "org-lsjm",
+    "nombre": "BONILLA CAMACHO REINALDO ALFREDO",
+    "cargo": "CONSERJE",
+    "horarios": [
+      {
+        "id": "h-p-bonilla-camacho-reinaldo-alfredo-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "05:50",
+            "salida": "13:50"
+          },
+          "martes": {
+            "entrada": "05:50",
+            "salida": "13:50"
+          },
+          "miercoles": {
+            "entrada": "05:50",
+            "salida": "13:50"
+          },
+          "jueves": {
+            "entrada": "05:50",
+            "salida": "13:50"
+          },
+          "viernes": {
+            "entrada": "05:50",
+            "salida": "13:50"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-brenes-gonzalez-shirley-maria",
+    "organizacionId": "org-lsjm",
+    "nombre": "BRENES GONZALEZ SHIRLEY MARIA",
+    "cargo": "INFORMATICA  EDUC",
+    "horarios": [
+      {
+        "id": "h-p-brenes-gonzalez-shirley-maria-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "11:20"
+          },
+          "martes": null,
+          "miercoles": null,
+          "jueves": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-calderon-montero-ivonne-mariela",
+    "organizacionId": "org-lsjm",
     "nombre": "CALDERON MONTERO IVONNE MARIELA",
     "cargo": "",
     "horarios": [
       {
-        "id": "hp016-1",
+        "id": "h-p-calderon-montero-ivonne-mariela-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -528,12 +588,78 @@
     ]
   },
   {
-    "id": "p017",
+    "id": "p-camacho-mora-edwin",
+    "organizacionId": "org-lsjm",
+    "nombre": "CAMACHO MORA EDWIN",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-camacho-mora-edwin-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "11:20"
+          },
+          "martes": null,
+          "miercoles": null,
+          "jueves": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-camacho-mora-edwin-pedrito",
+    "organizacionId": "org-lsjm",
+    "nombre": "CAMACHO MORA EDWIN PEDRITO",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-camacho-mora-edwin-pedrito-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "13:20"
+          },
+          "martes": {
+            "entrada": "10:00",
+            "salida": "14:05"
+          },
+          "miercoles": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "jueves": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-campos-vargas-georgie-gisella",
+    "organizacionId": "org-lsjm",
     "nombre": "CAMPOS VARGAS GEORGIE GISELLA",
     "cargo": "MATEMATICA",
     "horarios": [
       {
-        "id": "hp017-1",
+        "id": "h-p-campos-vargas-georgie-gisella-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -558,12 +684,13 @@
     ]
   },
   {
-    "id": "p018",
+    "id": "p-carballo-carillo-walter",
+    "organizacionId": "org-lsjm",
     "nombre": "CARBALLO CARILLO WALTER",
     "cargo": "ESTUDIOS SOC",
     "horarios": [
       {
-        "id": "hp018-1",
+        "id": "h-p-carballo-carillo-walter-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -585,12 +712,13 @@
     ]
   },
   {
-    "id": "p019",
+    "id": "p-carballo-herrera-maricela",
+    "organizacionId": "org-lsjm",
     "nombre": "CARBALLO HERRERA MARICELA",
     "cargo": "INGLES",
     "horarios": [
       {
-        "id": "hp019-1",
+        "id": "h-p-carballo-herrera-maricela-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -621,12 +749,13 @@
     ]
   },
   {
-    "id": "p020",
+    "id": "p-carballo-melendez-olga-idannia",
+    "organizacionId": "org-lsjm",
     "nombre": "CARBALLO MELENDEZ OLGA IDANNIA",
     "cargo": "CIENCIAS",
     "horarios": [
       {
-        "id": "hp020-1",
+        "id": "h-p-carballo-melendez-olga-idannia-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -657,12 +786,78 @@
     ]
   },
   {
-    "id": "p021",
+    "id": "p-castillo-vargas-maria-jose",
+    "organizacionId": "org-lsjm",
+    "nombre": "CASTILLO VARGAS MARIA JOSE",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-castillo-vargas-maria-jose-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:40",
+            "salida": "16:10"
+          },
+          "miercoles": {
+            "entrada": "10:00",
+            "salida": "16:10"
+          },
+          "jueves": {
+            "entrada": "07:40",
+            "salida": "11:20"
+          },
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-ceciliano-vega-jean-carlos",
+    "organizacionId": "org-lsjm",
+    "nombre": "CECILIANO VEGA JEAN CARLOS",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-ceciliano-vega-jean-carlos-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": null,
+          "miercoles": {
+            "entrada": "07:00",
+            "salida": "11:20"
+          },
+          "jueves": {
+            "entrada": "13:25",
+            "salida": "14:45"
+          },
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-cespedes-montero-jose-ramon",
+    "organizacionId": "org-lsjm",
     "nombre": "CESPEDES MONTERO JOSE RAMON",
     "cargo": "OFICINISTA",
     "horarios": [
       {
-        "id": "hp021-1",
+        "id": "h-p-cespedes-montero-jose-ramon-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -693,12 +888,13 @@
     ]
   },
   {
-    "id": "p022",
+    "id": "p-chavarria-campos-gerson-daniel",
+    "organizacionId": "org-lsjm",
     "nombre": "CHAVARRIA CAMPOS GERSON DANIEL",
     "cargo": "CIENCIAS",
     "horarios": [
       {
-        "id": "hp022-1",
+        "id": "h-p-chavarria-campos-gerson-daniel-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -720,12 +916,13 @@
     ]
   },
   {
-    "id": "p023",
+    "id": "p-cordero-benavides-maribelle",
+    "organizacionId": "org-lsjm",
     "nombre": "CORDERO BENAVIDES MARIBELLE",
     "cargo": "HOGAR",
     "horarios": [
       {
-        "id": "hp023-1",
+        "id": "h-p-cordero-benavides-maribelle-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -744,12 +941,13 @@
     ]
   },
   {
-    "id": "p024",
+    "id": "p-cordero-briones-francisco-alonso",
+    "organizacionId": "org-lsjm",
     "nombre": "CORDERO BRIONES FRANCISCO ALONSO",
     "cargo": "MATEMATICA",
     "horarios": [
       {
-        "id": "hp024-1",
+        "id": "h-p-cordero-briones-francisco-alonso-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -780,12 +978,38 @@
     ]
   },
   {
-    "id": "p025",
+    "id": "p-corea-vindas-carlos",
+    "organizacionId": "org-lsjm",
+    "nombre": "COREA VINDAS CARLOS",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-corea-vindas-carlos-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "12:00",
+            "salida": "16:10"
+          },
+          "martes": null,
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-corrales-vargas-jose-daniel",
+    "organizacionId": "org-lsjm",
     "nombre": "CORRALES VARGAS JOSE DANIEL",
     "cargo": "INDUSTRIALES",
     "horarios": [
       {
-        "id": "hp025-1",
+        "id": "h-p-corrales-vargas-jose-daniel-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -816,12 +1040,13 @@
     ]
   },
   {
-    "id": "p026",
+    "id": "p-delgado-rodriguez-catalina-de-jesus",
+    "organizacionId": "org-lsjm",
     "nombre": "DELGADO RODRIGUEZ CATALINA DE JESUS",
     "cargo": "FRANCES",
     "horarios": [
       {
-        "id": "hp026-1",
+        "id": "h-p-delgado-rodriguez-catalina-de-jesus-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -849,12 +1074,50 @@
     ]
   },
   {
-    "id": "p027",
+    "id": "p-donaires-rodriguez-eveling",
+    "organizacionId": "org-lsjm",
+    "nombre": "DONAIRES RODRIGUEZ EVELING",
+    "cargo": "INGLES",
+    "horarios": [
+      {
+        "id": "h-p-donaires-rodriguez-eveling-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:40",
+            "salida": "16:10"
+          },
+          "miercoles": {
+            "entrada": "10:00",
+            "salida": "16:10"
+          },
+          "jueves": {
+            "entrada": "07:40",
+            "salida": "11:20"
+          },
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-duran-garita-carlos",
+    "organizacionId": "org-lsjm",
     "nombre": "DURAN GARITA CARLOS",
     "cargo": "RELIGIÓN",
     "horarios": [
       {
-        "id": "hp027-1",
+        "id": "h-p-duran-garita-carlos-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -873,12 +1136,13 @@
     ]
   },
   {
-    "id": "p028",
+    "id": "p-esquivel-vega-jenny",
+    "organizacionId": "org-lsjm",
     "nombre": "ESQUIVEL VEGA JENNY",
     "cargo": "ESPAÑOL",
     "horarios": [
       {
-        "id": "hp028-1",
+        "id": "h-p-esquivel-vega-jenny-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -903,12 +1167,13 @@
     ]
   },
   {
-    "id": "p029",
+    "id": "p-fernandez-araya-veronica",
+    "organizacionId": "org-lsjm",
     "nombre": "FERNANDEZ ARAYA VERONICA",
     "cargo": "EDUC FISICA",
     "horarios": [
       {
-        "id": "hp029-1",
+        "id": "h-p-fernandez-araya-veronica-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -933,12 +1198,44 @@
     ]
   },
   {
-    "id": "p030",
+    "id": "p-fonseca-arias-gloriana",
+    "organizacionId": "org-lsjm",
+    "nombre": "FONSECA ARIAS GLORIANA",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-fonseca-arias-gloriana-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "12:40"
+          },
+          "martes": null,
+          "miercoles": {
+            "entrada": "08:35",
+            "salida": "16:10"
+          },
+          "jueves": null,
+          "viernes": {
+            "entrada": "10:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-fonseca-gutierrez-maria-jesus",
+    "organizacionId": "org-lsjm",
     "nombre": "FONSECA GUTIERREZ MARIA JESUS",
     "cargo": "EDUC. FISICA",
     "horarios": [
       {
-        "id": "hp030-1",
+        "id": "h-p-fonseca-gutierrez-maria-jesus-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -963,12 +1260,13 @@
     ]
   },
   {
-    "id": "p031",
+    "id": "p-godinez-badilla-johnnatan",
+    "organizacionId": "org-lsjm",
     "nombre": "GODINEZ BADILLA JOHNNATAN",
     "cargo": "FRANCES",
     "horarios": [
       {
-        "id": "hp031-1",
+        "id": "h-p-godinez-badilla-johnnatan-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -990,12 +1288,13 @@
     ]
   },
   {
-    "id": "p032",
+    "id": "p-gonzalez-araya-jose-eduardo",
+    "organizacionId": "org-lsjm",
     "nombre": "GONZALEZ ARAYA JOSE EDUARDO",
     "cargo": "MATEMATICA",
     "horarios": [
       {
-        "id": "hp032-1",
+        "id": "h-p-gonzalez-araya-jose-eduardo-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1017,12 +1316,13 @@
     ]
   },
   {
-    "id": "p033",
+    "id": "p-gonzalez-chavarria-gabriela",
+    "organizacionId": "org-lsjm",
     "nombre": "GONZALEZ CHAVARRIA GABRIELA",
     "cargo": "ASIST DIRECC",
     "horarios": [
       {
-        "id": "hp033-1",
+        "id": "h-p-gonzalez-chavarria-gabriela-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1053,12 +1353,13 @@
     ]
   },
   {
-    "id": "p034",
-    "nombre": "SOLANO SALAZAR LUIS FRANCISCO",
-    "cargo": "DIRECTOR",
+    "id": "p-gonzalez-guerrero-gilberth",
+    "organizacionId": "org-lsjm",
+    "nombre": "GONZALEZ GUERRERO GILBERTH",
+    "cargo": " DIRECTOR ",
     "horarios": [
       {
-        "id": "hp034-1",
+        "id": "h-p-gonzalez-guerrero-gilberth-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1068,20 +1369,11 @@
           },
           "martes": {
             "entrada": "07:00",
-            "salida": "16:10"
+            "salida": "14:05"
           },
-          "miercoles": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "jueves": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "viernes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
           "sabado": null,
           "domingo": null
         }
@@ -1089,12 +1381,13 @@
     ]
   },
   {
-    "id": "p035",
+    "id": "p-gonzalez-mora-carlos",
+    "organizacionId": "org-lsjm",
     "nombre": "GONZALEZ MORA CARLOS",
     "cargo": "AUX. ADMINIST",
     "horarios": [
       {
-        "id": "hp035-1",
+        "id": "h-p-gonzalez-mora-carlos-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1125,34 +1418,63 @@
     ]
   },
   {
-    "id": "p036",
-    "nombre": "SANCHEZ ARGUEDAS GEOVANNI",
+    "id": "p-gonzalez-soto-adrian-rodrigo",
+    "organizacionId": "org-lsjm",
+    "nombre": "GONZALEZ SOTO ADRIAN RODRIGO",
     "cargo": "G. SEGURIDAD",
     "horarios": [
       {
-        "id": "hp036-1",
+        "id": "h-p-gonzalez-soto-adrian-rodrigo-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
           "lunes": {
-            "entrada": "06:00",
-            "salida": "14:00"
+            "entrada": "07:00",
+            "salida": "16:10"
           },
           "martes": {
-            "entrada": "06:00",
-            "salida": "14:00"
+            "entrada": "07:00",
+            "salida": "14:05"
+          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-grant-daniels-sthephanie",
+    "organizacionId": "org-lsjm",
+    "nombre": "GRANT DANIELS STHEPHANIE",
+    "cargo": "OFICINISTA",
+    "horarios": [
+      {
+        "id": "h-p-grant-daniels-sthephanie-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "11:00",
+            "salida": "15:00"
+          },
+          "martes": {
+            "entrada": "11:00",
+            "salida": "15:00"
           },
           "miercoles": {
-            "entrada": "06:00",
-            "salida": "14:00"
+            "entrada": "11:00",
+            "salida": "15:00"
           },
           "jueves": {
-            "entrada": "06:00",
-            "salida": "14:00"
+            "entrada": "11:00",
+            "salida": "15:00"
           },
           "viernes": {
-            "entrada": "06:00",
-            "salida": "14:00"
+            "entrada": "11:00",
+            "salida": "15:00"
           },
           "sabado": null,
           "domingo": null
@@ -1161,12 +1483,13 @@
     ]
   },
   {
-    "id": "p037",
+    "id": "p-hernandez-cordero-maria-del-rocio",
+    "organizacionId": "org-lsjm",
     "nombre": "HERNANDEZ CORDERO MARIA DEL ROCIO",
     "cargo": "FRANCES",
     "horarios": [
       {
-        "id": "hp037-1",
+        "id": "h-p-hernandez-cordero-maria-del-rocio-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1188,12 +1511,13 @@
     ]
   },
   {
-    "id": "p038",
+    "id": "p-hernandez-mora-vivian-guadalupe",
+    "organizacionId": "org-lsjm",
     "nombre": "HERNANDEZ MORA VIVIAN GUADALUPE",
     "cargo": "ORIENTADORA",
     "horarios": [
       {
-        "id": "hp038-1",
+        "id": "h-p-hernandez-mora-vivian-guadalupe-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1224,12 +1548,13 @@
     ]
   },
   {
-    "id": "p039",
+    "id": "p-jimenez-arias-gustavo-adolfo",
+    "organizacionId": "org-lsjm",
     "nombre": "JIMENEZ ARIAS GUSTAVO ADOLFO",
     "cargo": "INGLES CONVER",
     "horarios": [
       {
-        "id": "hp039-1",
+        "id": "h-p-jimenez-arias-gustavo-adolfo-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1257,12 +1582,13 @@
     ]
   },
   {
-    "id": "p040",
+    "id": "p-lizano-hernandez-ana-lorena",
+    "organizacionId": "org-lsjm",
     "nombre": "LIZANO HERNANDEZ ANA LORENA",
     "cargo": "ESTUDIOS SOC",
     "horarios": [
       {
-        "id": "hp040-1",
+        "id": "h-p-lizano-hernandez-ana-lorena-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1293,12 +1619,13 @@
     ]
   },
   {
-    "id": "p041",
+    "id": "p-marin-robles-adrian-gerardo",
+    "organizacionId": "org-lsjm",
     "nombre": "MARIN ROBLES ADRIAN GERARDO",
     "cargo": "INFORMATICA",
     "horarios": [
       {
-        "id": "hp041-1",
+        "id": "h-p-marin-robles-adrian-gerardo-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1320,34 +1647,54 @@
     ]
   },
   {
-    "id": "p042",
-    "nombre": "MEZA CASCANTE JOSE ALBERTO",
-    "cargo": "G. SEGURIDAD",
+    "id": "p-mena-chaves-jocselyn",
+    "organizacionId": "org-lsjm",
+    "nombre": "MENA CHAVES JOCSELYN",
+    "cargo": "PROFESOR",
     "horarios": [
       {
-        "id": "hp042-1",
+        "id": "h-p-mena-chaves-jocselyn-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
-          "lunes": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
+          "lunes": null,
           "martes": {
-            "entrada": "06:00",
-            "salida": "14:00"
+            "entrada": "07:00",
+            "salida": "16:10"
           },
-          "miercoles": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
+          "miercoles": null,
           "jueves": {
-            "entrada": "06:00",
-            "salida": "14:00"
+            "entrada": "07:00",
+            "salida": "14:05"
           },
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-mendez-jimenez-helen-maria",
+    "organizacionId": "org-lsjm",
+    "nombre": "MENDEZ JIMENEZ HELEN MARIA",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-mendez-jimenez-helen-maria-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": {
+            "entrada": "09:15",
+            "salida": "11:20"
+          },
+          "miercoles": null,
+          "jueves": null,
           "viernes": {
-            "entrada": "06:00",
-            "salida": "14:00"
+            "entrada": "14:05",
+            "salida": "16:10"
           },
           "sabado": null,
           "domingo": null
@@ -1356,12 +1703,35 @@
     ]
   },
   {
-    "id": "p043",
+    "id": "p-meza-cascante-jose-alberto",
+    "organizacionId": "org-lsjm",
+    "nombre": "MEZA CASCANTE JOSE ALBERTO",
+    "cargo": "G. SEGURIDAD",
+    "horarios": [
+      {
+        "id": "h-p-meza-cascante-jose-alberto-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": null,
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-miranda-camacho-sergio-gerardo",
+    "organizacionId": "org-lsjm",
     "nombre": "MIRANDA CAMACHO SERGIO GERARDO",
     "cargo": "ART PLASTICAS",
     "horarios": [
       {
-        "id": "hp043-1",
+        "id": "h-p-miranda-camacho-sergio-gerardo-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1386,12 +1756,13 @@
     ]
   },
   {
-    "id": "p044",
+    "id": "p-miranda-hernandez-francinie-maria",
+    "organizacionId": "org-lsjm",
     "nombre": "MIRANDA HERNANDEZ FRANCINIE MARIA",
     "cargo": "BIBLIOTECOLOGA",
     "horarios": [
       {
-        "id": "hp044-1",
+        "id": "h-p-miranda-hernandez-francinie-maria-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1422,12 +1793,13 @@
     ]
   },
   {
-    "id": "p045",
+    "id": "p-miranda-mendez-jessica",
+    "organizacionId": "org-lsjm",
     "nombre": "MIRANDA MENDEZ JESSICA",
     "cargo": "DOCENTE",
     "horarios": [
       {
-        "id": "hp045-1",
+        "id": "h-p-miranda-mendez-jessica-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1446,12 +1818,41 @@
     ]
   },
   {
-    "id": "p046",
+    "id": "p-molina-vargas-andres",
+    "organizacionId": "org-lsjm",
+    "nombre": "MOLINA VARGAS ANDRES",
+    "cargo": "",
+    "horarios": [
+      {
+        "id": "h-p-molina-vargas-andres-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "14:05"
+          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-montero-delgado-carolina",
+    "organizacionId": "org-lsjm",
     "nombre": "MONTERO DELGADO CAROLINA",
     "cargo": "ESTUDIOS SOC",
     "horarios": [
       {
-        "id": "hp046-1",
+        "id": "h-p-montero-delgado-carolina-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1473,12 +1874,13 @@
     ]
   },
   {
-    "id": "p047",
+    "id": "p-montero-montero-alina",
+    "organizacionId": "org-lsjm",
     "nombre": "MONTERO MONTERO ALINA",
     "cargo": "AUX. ADMINIST",
     "horarios": [
       {
-        "id": "hp047-1",
+        "id": "h-p-montero-montero-alina-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1509,12 +1911,13 @@
     ]
   },
   {
-    "id": "p048",
+    "id": "p-montero-zuniga-kathia",
+    "organizacionId": "org-lsjm",
     "nombre": "MONTERO ZUÑIGA KATHIA",
     "cargo": "EDUC FISICA",
     "horarios": [
       {
-        "id": "hp048-1",
+        "id": "h-p-montero-zuniga-kathia-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1545,12 +1948,41 @@
     ]
   },
   {
-    "id": "p049",
+    "id": "p-mora-vargas-marta",
+    "organizacionId": "org-lsjm",
+    "nombre": "MORA VARGAS MARTA",
+    "cargo": "",
+    "horarios": [
+      {
+        "id": "h-p-mora-vargas-marta-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "14:05"
+          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-moreira-arguedas-roberto",
+    "organizacionId": "org-lsjm",
     "nombre": "MOREIRA ARGUEDAS ROBERTO",
     "cargo": "EDUC FISICA",
     "horarios": [
       {
-        "id": "hp049-1",
+        "id": "h-p-moreira-arguedas-roberto-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1572,12 +2004,13 @@
     ]
   },
   {
-    "id": "p050",
+    "id": "p-morera-barrantes-roy-alberto",
+    "organizacionId": "org-lsjm",
     "nombre": "MORERA BARRANTES ROY ALBERTO",
     "cargo": "EDUC FISICA",
     "horarios": [
       {
-        "id": "hp050-1",
+        "id": "h-p-morera-barrantes-roy-alberto-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1602,12 +2035,13 @@
     ]
   },
   {
-    "id": "p051",
+    "id": "p-orias-anchia-ana-giselle",
+    "organizacionId": "org-lsjm",
     "nombre": "ORIAS ANCHIA ANA GISELLE",
     "cargo": "ESPAÑOL",
     "horarios": [
       {
-        "id": "hp051-1",
+        "id": "h-p-orias-anchia-ana-giselle-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1638,12 +2072,131 @@
     ]
   },
   {
-    "id": "p052",
+    "id": "p-parra-chaves-william",
+    "organizacionId": "org-lsjm",
+    "nombre": "PARRA CHAVES WILLIAM",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-parra-chaves-william-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "06:00",
+            "salida": "14:00"
+          },
+          "martes": {
+            "entrada": "06:00",
+            "salida": "14:00"
+          },
+          "miercoles": {
+            "entrada": "06:00",
+            "salida": "14:00"
+          },
+          "jueves": {
+            "entrada": "06:00",
+            "salida": "14:00"
+          },
+          "viernes": {
+            "entrada": "06:00",
+            "salida": "14:00"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-parra-montero-maria-del-carmen",
+    "organizacionId": "org-lsjm",
+    "nombre": "PARRA MONTERO MARIA DEL CARMEN",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-parra-montero-maria-del-carmen-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": null,
+          "miercoles": {
+            "entrada": "08:35",
+            "salida": "10:40"
+          },
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-pindras-caravaca-gina",
+    "organizacionId": "org-lsjm",
+    "nombre": "PINDRAS CARAVACA GINA",
+    "cargo": "",
+    "horarios": [
+      {
+        "id": "h-p-pindras-caravaca-gina-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "14:05"
+          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-portillo-obrego-karen",
+    "organizacionId": "org-lsjm",
+    "nombre": "PORTILLO OBREGO KAREN",
+    "cargo": "PROFESORA",
+    "horarios": [
+      {
+        "id": "h-p-portillo-obrego-karen-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "14:05"
+          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-prendas-naranjo-ramon-antonio",
+    "organizacionId": "org-lsjm",
     "nombre": "PRENDAS NARANJO RAMÓN ANTONIO",
     "cargo": "INDUSTRIALES",
     "horarios": [
       {
-        "id": "hp052-1",
+        "id": "h-p-prendas-naranjo-ramon-antonio-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1662,12 +2215,13 @@
     ]
   },
   {
-    "id": "p053",
+    "id": "p-ramirez-solis-laura",
+    "organizacionId": "org-lsjm",
     "nombre": "RAMIREZ SOLIS LAURA",
     "cargo": "CIENCIAS",
     "horarios": [
       {
-        "id": "hp053-1",
+        "id": "h-p-ramirez-solis-laura-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1689,12 +2243,13 @@
     ]
   },
   {
-    "id": "p054",
+    "id": "p-ramos-alvarado-hellen",
+    "organizacionId": "org-lsjm",
     "nombre": "RAMOS ALVARADO HELLEN",
     "cargo": "CIENCIAS",
     "horarios": [
       {
-        "id": "hp054-1",
+        "id": "h-p-ramos-alvarado-hellen-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1725,12 +2280,69 @@
     ]
   },
   {
-    "id": "p055",
+    "id": "p-retana-navarro-lester",
+    "organizacionId": "org-lsjm",
+    "nombre": "RETANA NAVARRO LESTER",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-retana-navarro-lester-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "14:05"
+          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-rodriguez-chacon-carolina",
+    "organizacionId": "org-lsjm",
+    "nombre": "RODRIGUEZ CHACON CAROLINA",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-rodriguez-chacon-carolina-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "11:20"
+          },
+          "martes": null,
+          "miercoles": null,
+          "jueves": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-rodriguez-diaz-azalea-del-socorro",
+    "organizacionId": "org-lsjm",
     "nombre": "RODRIGUEZ DIAZ AZALEA DEL SOCORRO",
     "cargo": "FILOSOFIA",
     "horarios": [
       {
-        "id": "hp055-1",
+        "id": "h-p-rodriguez-diaz-azalea-del-socorro-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1749,12 +2361,13 @@
     ]
   },
   {
-    "id": "p056",
+    "id": "p-rodriguez-montero-alejandra-maria",
+    "organizacionId": "org-lsjm",
     "nombre": "RODRIGUEZ MONTERO ALEJANDRA MARIA",
     "cargo": "ORIENTADORA",
     "horarios": [
       {
-        "id": "hp056-1",
+        "id": "h-p-rodriguez-montero-alejandra-maria-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1785,12 +2398,13 @@
     ]
   },
   {
-    "id": "p057",
+    "id": "p-rodriguez-montero-daniela-lilliana",
+    "organizacionId": "org-lsjm",
     "nombre": "RODRIGUEZ MONTERO DANIELA LILLIANA",
     "cargo": "REUBICADA",
     "horarios": [
       {
-        "id": "hp057-1",
+        "id": "h-p-rodriguez-montero-daniela-lilliana-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1821,12 +2435,63 @@
     ]
   },
   {
-    "id": "p058",
+    "id": "p-rojas-colon-marianella",
+    "organizacionId": "org-lsjm",
+    "nombre": "ROJAS COLON MARIANELLA",
+    "cargo": "PROFESORA",
+    "horarios": [
+      {
+        "id": "h-p-rojas-colon-marianella-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": null,
+          "miercoles": null,
+          "jueves": {
+            "entrada": "13:25",
+            "salida": "16:10"
+          },
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-rojas-perez-flor-ivette",
+    "organizacionId": "org-lsjm",
+    "nombre": "ROJAS PEREZ FLOR IVETTE",
+    "cargo": "PROFESORA",
+    "horarios": [
+      {
+        "id": "h-p-rojas-perez-flor-ivette-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": null,
+          "miercoles": null,
+          "jueves": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-roman-zarate-andrea-karina",
+    "organizacionId": "org-lsjm",
     "nombre": "ROMAN ZARATE ANDREA KARINA",
     "cargo": "INDUSTRIALES",
     "horarios": [
       {
-        "id": "hp058-1",
+        "id": "h-p-roman-zarate-andrea-karina-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1848,12 +2513,13 @@
     ]
   },
   {
-    "id": "p059",
+    "id": "p-rosales-garcia-randy-gerardo",
+    "organizacionId": "org-lsjm",
     "nombre": "ROSALES GARCIA RANDY GERARDO",
     "cargo": "MATEMATICA",
     "horarios": [
       {
-        "id": "hp059-1",
+        "id": "h-p-rosales-garcia-randy-gerardo-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1884,12 +2550,13 @@
     ]
   },
   {
-    "id": "p060",
+    "id": "p-salas-morales-olga-marta",
+    "organizacionId": "org-lsjm",
     "nombre": "SALAS MORALES OLGA MARTA",
     "cargo": "",
     "horarios": [
       {
-        "id": "hp060-1",
+        "id": "h-p-salas-morales-olga-marta-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1920,12 +2587,13 @@
     ]
   },
   {
-    "id": "p061",
+    "id": "p-salas-nunez-ana-gabriela",
+    "organizacionId": "org-lsjm",
     "nombre": "SALAS NUÑEZ ANA GABRIELA",
     "cargo": "ESPAÑOL",
     "horarios": [
       {
-        "id": "hp061-1",
+        "id": "h-p-salas-nunez-ana-gabriela-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1950,12 +2618,13 @@
     ]
   },
   {
-    "id": "p062",
+    "id": "p-salas-soto-andrea-lilliana",
+    "organizacionId": "org-lsjm",
     "nombre": "SALAS SOTO ANDREA LILLIANA",
     "cargo": "MUSICA",
     "horarios": [
       {
-        "id": "hp062-1",
+        "id": "h-p-salas-soto-andrea-lilliana-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -1980,12 +2649,13 @@
     ]
   },
   {
-    "id": "p063",
+    "id": "p-salas-vargas-marianela",
+    "organizacionId": "org-lsjm",
     "nombre": "SALAS VARGAS MARIANELA",
     "cargo": "INFORMATICA",
     "horarios": [
       {
-        "id": "hp063-1",
+        "id": "h-p-salas-vargas-marianela-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -2007,12 +2677,35 @@
     ]
   },
   {
-    "id": "p064",
+    "id": "p-sanchez-arguedas-geovanni",
+    "organizacionId": "org-lsjm",
+    "nombre": "SANCHEZ ARGUEDAS GEOVANNI",
+    "cargo": "G. SEGURIDAD",
+    "horarios": [
+      {
+        "id": "h-p-sanchez-arguedas-geovanni-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": null,
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-sanchez-chacon-clara",
+    "organizacionId": "org-lsjm",
     "nombre": "SANCHEZ CHACON CLARA",
     "cargo": "ESTUDIOS SOC",
     "horarios": [
       {
-        "id": "hp064-1",
+        "id": "h-p-sanchez-chacon-clara-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -2040,12 +2733,87 @@
     ]
   },
   {
-    "id": "p065",
+    "id": "p-sanchez-sanchez-nidia-magaly",
+    "organizacionId": "org-lsjm",
+    "nombre": "SANCHEZ SANCHEZ NIDIA MAGALY",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-sanchez-sanchez-nidia-magaly-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "13:20"
+          },
+          "martes": {
+            "entrada": "10:00",
+            "salida": "14:05"
+          },
+          "miercoles": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "jueves": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-sancho-chaves-juan-carlos",
+    "organizacionId": "org-lsjm",
+    "nombre": "SANCHO CHAVES JUAN CARLOS",
+    "cargo": "CONSERJE",
+    "horarios": [
+      {
+        "id": "h-p-sancho-chaves-juan-carlos-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "08:00",
+            "salida": "16:00"
+          },
+          "martes": {
+            "entrada": "08:00",
+            "salida": "16:00"
+          },
+          "miercoles": {
+            "entrada": "08:00",
+            "salida": "16:00"
+          },
+          "jueves": {
+            "entrada": "08:00",
+            "salida": "16:00"
+          },
+          "viernes": {
+            "entrada": "08:00",
+            "salida": "16:00"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-segura-gutierrez-hazel-andrea",
+    "organizacionId": "org-lsjm",
     "nombre": "SEGURA GUTIERREZ HAZEL ANDREA",
     "cargo": "DISEÑO PUB.",
     "horarios": [
       {
-        "id": "hp065-1",
+        "id": "h-p-segura-gutierrez-hazel-andrea-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -2064,12 +2832,13 @@
     ]
   },
   {
-    "id": "p066",
+    "id": "p-segura-rodriguez-arnoldo-jesus",
+    "organizacionId": "org-lsjm",
     "nombre": "SEGURA RODRIGUEZ ARNOLDO JESUS",
     "cargo": "FRANCES",
     "horarios": [
       {
-        "id": "hp066-1",
+        "id": "h-p-segura-rodriguez-arnoldo-jesus-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -2091,23 +2860,18 @@
     ]
   },
   {
-    "id": "p067",
+    "id": "p-segura-rodriguez-geiner-antonio",
+    "organizacionId": "org-lsjm",
     "nombre": "SEGURA RODRIGUEZ GEINER ANTONIO",
     "cargo": "INGLES CONVER",
     "horarios": [
       {
-        "id": "hp067-1",
+        "id": "h-p-segura-rodriguez-geiner-antonio-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
-          "lunes": {
-            "entrada": "09:15",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "09:15",
-            "salida": "16:10"
-          },
+          "lunes": null,
+          "martes": null,
           "miercoles": null,
           "jueves": null,
           "viernes": null,
@@ -2118,189 +2882,50 @@
     ]
   },
   {
-    "id": "p068",
+    "id": "p-solano-salazar-luis-francisco",
+    "organizacionId": "org-lsjm",
+    "nombre": "SOLANO SALAZAR LUIS FRANCISCO",
+    "cargo": " DIRECTOR ",
+    "horarios": [
+      {
+        "id": "h-p-solano-salazar-luis-francisco-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "miercoles": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "jueves": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-solis-nunez-daniel-ulises",
+    "organizacionId": "org-lsjm",
     "nombre": "SOLIS NUÑEZ DANIEL ULISES",
     "cargo": "CONSERJE",
     "horarios": [
       {
-        "id": "hp068-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "martes": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "miercoles": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "jueves": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "viernes": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p069",
-    "nombre": "GRANT DANIELS STHEPHANIE",
-    "cargo": "OFICINISTA",
-    "horarios": [
-      {
-        "id": "hp069-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "11:00",
-            "salida": "15:00"
-          },
-          "martes": {
-            "entrada": "11:00",
-            "salida": "15:00"
-          },
-          "miercoles": {
-            "entrada": "11:00",
-            "salida": "15:00"
-          },
-          "jueves": {
-            "entrada": "11:00",
-            "salida": "15:00"
-          },
-          "viernes": {
-            "entrada": "11:00",
-            "salida": "15:00"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p070",
-    "nombre": "VARGAS CHAVES VIVIANA LIZBETH",
-    "cargo": "MATEMATICA",
-    "horarios": [
-      {
-        "id": "hp070-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "08:35",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "miercoles": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "jueves": {
-            "entrada": "07:00",
-            "salida": "11:20"
-          },
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p071",
-    "nombre": "DONAIRES RODRIGUEZ EVELING",
-    "cargo": "INGLES",
-    "horarios": [
-      {
-        "id": "hp071-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:40",
-            "salida": "16:10"
-          },
-          "miercoles": {
-            "entrada": "10:00",
-            "salida": "16:10"
-          },
-          "jueves": {
-            "entrada": "07:40",
-            "salida": "11:20"
-          },
-          "viernes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p072",
-    "nombre": "VENEGAS HERNANDEZ JOSE FABIO",
-    "cargo": "INGLES CONVER",
-    "horarios": [
-      {
-        "id": "hp072-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "miercoles": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "jueves": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "viernes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p073",
-    "nombre": "VENEGAS VARGAS VERONICA MARIA",
-    "cargo": "CONTABILIDAD",
-    "horarios": [
-      {
-        "id": "hp073-1",
+        "id": "h-p-solis-nunez-daniel-ulises-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -2316,714 +2941,13 @@
     ]
   },
   {
-    "id": "p074",
-    "nombre": "VIQUEZ CALDERON KATHIA",
-    "cargo": "PSICOLOGIA",
-    "horarios": [
-      {
-        "id": "hp074-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": null,
-          "martes": {
-            "entrada": "07:00",
-            "salida": "11:20"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p075",
-    "nombre": "ZARATE ARAYA GISELLA MARIA",
-    "cargo": "ESPAÑOL",
-    "horarios": [
-      {
-        "id": "hp075-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:40",
-            "salida": "14:45"
-          },
-          "miercoles": null,
-          "jueves": {
-            "entrada": "07:00",
-            "salida": "14:45"
-          },
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p076",
-    "nombre": "ZARATE ROJAS DIEGO ARMANDO",
-    "cargo": "INGLES CONVER",
-    "horarios": [
-      {
-        "id": "hp076-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "miercoles": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "jueves": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "viernes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p077",
-    "nombre": "ZUÑIGA VALERIO HANZEL JOSE",
-    "cargo": "RELIGION",
-    "horarios": [
-      {
-        "id": "hp077-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "14:45"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p078",
-    "nombre": "PORTILLO OBREGO KAREN",
-    "cargo": "PROFESORA",
-    "horarios": [
-      {
-        "id": "hp078-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "14:05"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p079",
-    "nombre": "ROJAS COLON MARIANELLA",
-    "cargo": "PROFESORA",
-    "horarios": [
-      {
-        "id": "hp079-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": null,
-          "martes": null,
-          "miercoles": null,
-          "jueves": {
-            "entrada": "13:25",
-            "salida": "16:10"
-          },
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p080",
-    "nombre": "ROJAS PEREZ FLOR IVETTE",
-    "cargo": "PROFESORA",
-    "horarios": [
-      {
-        "id": "hp080-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": null,
-          "martes": null,
-          "miercoles": null,
-          "jueves": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p081",
-    "nombre": "ARGUEDAS CAMACHO LUIS DIEGO",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp081-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "11:20"
-          },
-          "martes": null,
-          "miercoles": {
-            "entrada": "07:00",
-            "salida": "13:20"
-          },
-          "jueves": null,
-          "viernes": {
-            "entrada": "07:00",
-            "salida": "11:20"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p082",
-    "nombre": "COREA VINDAS CARLOS",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp082-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "12:00",
-            "salida": "16:10"
-          },
-          "martes": null,
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p083",
-    "nombre": "VILLALOBOS MADRIGAL FRANCISCO",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp083-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "10:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "miercoles": {
-            "entrada": "12:00",
-            "salida": "16:10"
-          },
-          "jueves": {
-            "entrada": "10:00",
-            "salida": "16:10"
-          },
-          "viernes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p084",
-    "nombre": "RETANA NAVARRO LESTER",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp084-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "14:05"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p085",
-    "nombre": "GONZALEZ GUERRERO GILBERTH",
-    "cargo": "DIRECTOR",
-    "horarios": [
-      {
-        "id": "hp085-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "14:05"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p086",
-    "nombre": "GONZALEZ SOTO ADRIAN RODRIGO",
-    "cargo": "G. SEGURIDAD",
-    "horarios": [
-      {
-        "id": "hp086-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "14:05"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p087",
-    "nombre": "101 101",
-    "cargo": "",
-    "horarios": [
-      {
-        "id": "hp087-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "14:05"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p088",
-    "nombre": "93 93",
-    "cargo": "",
-    "horarios": [
-      {
-        "id": "hp088-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "14:05"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p089",
-    "nombre": "96 96",
-    "cargo": "",
-    "horarios": [
-      {
-        "id": "hp089-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "14:05"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p090",
-    "nombre": "97 97",
-    "cargo": "",
-    "horarios": [
-      {
-        "id": "hp090-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "14:05"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p091",
-    "nombre": "111 111",
-    "cargo": "",
-    "horarios": [
-      {
-        "id": "hp091-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "14:05"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p092",
-    "nombre": "MENDEZ JIMENEZ HELEN MARIA",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp092-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": null,
-          "martes": {
-            "entrada": "09:15",
-            "salida": "11:20"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": {
-            "entrada": "14:05",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p093",
-    "nombre": "CECILIANO VEGA JEAN CARLOS",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp093-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": null,
-          "martes": null,
-          "miercoles": {
-            "entrada": "07:00",
-            "salida": "11:20"
-          },
-          "jueves": {
-            "entrada": "13:25",
-            "salida": "14:45"
-          },
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p094",
-    "nombre": "PARRA CHAVES WILLIAM",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp094-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "martes": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "miercoles": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "jueves": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "viernes": {
-            "entrada": "06:00",
-            "salida": "14:00"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p095",
-    "nombre": "PARRA MONTERO MARIA DEL CARMEN",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp095-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": null,
-          "martes": null,
-          "miercoles": {
-            "entrada": "08:35",
-            "salida": "10:40"
-          },
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p096",
-    "nombre": "SOTO VILLAMIZAR MALORY",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp096-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": null,
-          "martes": {
-            "entrada": "07:00",
-            "salida": "14:45"
-          },
-          "miercoles": null,
-          "jueves": null,
-          "viernes": {
-            "entrada": "09:15",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p097",
-    "nombre": "VEGA SANCHEZ LEIDY AMANDA",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp097-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "miercoles": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "jueves": {
-            "entrada": "13:25",
-            "salida": "16:10"
-          },
-          "viernes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p098",
-    "nombre": "VARELA MURILLO MARIA DEL MILAGRO",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp098-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "martes": null,
-          "miercoles": null,
-          "jueves": null,
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p099",
+    "id": "p-solis-vargas-maricel",
+    "organizacionId": "org-lsjm",
     "nombre": "SOLIS VARGAS MARICEL",
     "cargo": "PROFESOR",
     "horarios": [
       {
-        "id": "hp099-1",
+        "id": "h-p-solis-vargas-maricel-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -3054,56 +2978,27 @@
     ]
   },
   {
-    "id": "p100",
-    "nombre": "FONSECA ARIAS GLORIANA",
+    "id": "p-soto-villamizar-malory",
+    "organizacionId": "org-lsjm",
+    "nombre": "SOTO VILLAMIZAR MALORY",
     "cargo": "PROFESOR",
     "horarios": [
       {
-        "id": "hp100-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "12:40"
-          },
-          "martes": null,
-          "miercoles": {
-            "entrada": "08:35",
-            "salida": "16:10"
-          },
-          "jueves": null,
-          "viernes": {
-            "entrada": "10:00",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p101",
-    "nombre": "MENA CHAVES JOCSELYN",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp101-1",
+        "id": "h-p-soto-villamizar-malory-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
           "lunes": null,
           "martes": {
             "entrada": "07:00",
-            "salida": "16:10"
+            "salida": "14:45"
           },
           "miercoles": null,
-          "jueves": {
-            "entrada": "07:00",
-            "salida": "14:05"
+          "jueves": null,
+          "viernes": {
+            "entrada": "09:15",
+            "salida": "16:10"
           },
-          "viernes": null,
           "sabado": null,
           "domingo": null
         }
@@ -3111,12 +3006,13 @@
     ]
   },
   {
-    "id": "p102",
+    "id": "p-valerio-madriz-henry",
+    "organizacionId": "org-lsjm",
     "nombre": "VALERIO MADRIZ HENRY",
     "cargo": "PROFESOR",
     "horarios": [
       {
-        "id": "hp102-1",
+        "id": "h-p-valerio-madriz-henry-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -3147,35 +3043,24 @@
     ]
   },
   {
-    "id": "p103",
-    "nombre": "SANCHO CHAVES JUAN CARLOS",
-    "cargo": "CONSERJE",
+    "id": "p-varela-murillo-maria-del-milagro",
+    "organizacionId": "org-lsjm",
+    "nombre": "VARELA MURILLO MARIA DEL MILAGRO",
+    "cargo": "PROFESOR",
     "horarios": [
       {
-        "id": "hp103-1",
+        "id": "h-p-varela-murillo-maria-del-milagro-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
           "lunes": {
-            "entrada": "08:00",
-            "salida": "16:00"
+            "entrada": "07:00",
+            "salida": "16:10"
           },
-          "martes": {
-            "entrada": "08:00",
-            "salida": "16:00"
-          },
-          "miercoles": {
-            "entrada": "08:00",
-            "salida": "16:00"
-          },
-          "jueves": {
-            "entrada": "08:00",
-            "salida": "16:00"
-          },
-          "viernes": {
-            "entrada": "08:00",
-            "salida": "16:00"
-          },
+          "martes": null,
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
           "sabado": null,
           "domingo": null
         }
@@ -3183,60 +3068,31 @@
     ]
   },
   {
-    "id": "p104",
-    "nombre": "CASTILLO VARGAS MARIA JOSE",
-    "cargo": "PROFESOR",
+    "id": "p-vargas-chaves-viviana-lizbeth",
+    "organizacionId": "org-lsjm",
+    "nombre": "VARGAS CHAVES VIVIANA LIZBETH",
+    "cargo": "MATEMATICA",
     "horarios": [
       {
-        "id": "hp104-1",
+        "id": "h-p-vargas-chaves-viviana-lizbeth-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
           "lunes": {
-            "entrada": "07:00",
+            "entrada": "08:35",
             "salida": "16:10"
           },
           "martes": {
-            "entrada": "07:40",
+            "entrada": "07:00",
             "salida": "16:10"
           },
           "miercoles": {
-            "entrada": "10:00",
+            "entrada": "07:00",
             "salida": "16:10"
           },
           "jueves": {
-            "entrada": "07:40",
-            "salida": "11:20"
-          },
-          "viernes": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p105",
-    "nombre": "AVILA HERNANDEZ ALBERTO",
-    "cargo": "INFORMATICA  EDUC",
-    "horarios": [
-      {
-        "id": "hp105-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
             "entrada": "07:00",
             "salida": "11:20"
-          },
-          "martes": null,
-          "miercoles": null,
-          "jueves": {
-            "entrada": "07:00",
-            "salida": "16:10"
           },
           "viernes": null,
           "sabado": null,
@@ -3246,66 +3102,13 @@
     ]
   },
   {
-    "id": "p106",
-    "nombre": "CAMACHO MORA EDWIN",
+    "id": "p-vargas-cubero-adriana",
+    "organizacionId": "org-lsjm",
+    "nombre": "VARGAS CUBERO ADRIANA",
     "cargo": "PROFESOR",
     "horarios": [
       {
-        "id": "hp106-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "11:20"
-          },
-          "martes": null,
-          "miercoles": null,
-          "jueves": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p107",
-    "nombre": "RODRIGUEZ CHACON CAROLINA",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp107-1",
-        "fechaInicio": null,
-        "fechaFin": null,
-        "horario": {
-          "lunes": {
-            "entrada": "07:00",
-            "salida": "11:20"
-          },
-          "martes": null,
-          "miercoles": null,
-          "jueves": {
-            "entrada": "07:00",
-            "salida": "16:10"
-          },
-          "viernes": null,
-          "sabado": null,
-          "domingo": null
-        }
-      }
-    ]
-  },
-  {
-    "id": "p108",
-    "nombre": "CAMACHO MORA EDWIN PEDRITO",
-    "cargo": "PROFESOR",
-    "horarios": [
-      {
-        "id": "hp108-1",
+        "id": "h-p-vargas-cubero-adriana-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
@@ -3336,22 +3139,88 @@
     ]
   },
   {
-    "id": "p109",
-    "nombre": "GINA PINDRAS CARAVACA",
-    "cargo": "PROFESOR",
+    "id": "p-vargas-sanchez-maria-de-los-angeles",
+    "organizacionId": "org-lsjm",
+    "nombre": "VARGAS SANCHEZ MARIA DE LOS ANGELES",
+    "cargo": "",
     "horarios": [
       {
-        "id": "hp109-1",
+        "id": "h-p-vargas-sanchez-maria-de-los-angeles-1",
         "fechaInicio": null,
         "fechaFin": null,
         "horario": {
           "lunes": {
             "entrada": "07:00",
-            "salida": "13:20"
+            "salida": "16:10"
           },
           "martes": {
-            "entrada": "10:00",
+            "entrada": "07:00",
             "salida": "14:05"
+          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-vega-sanchez-leidy-amanda",
+    "organizacionId": "org-lsjm",
+    "nombre": "VEGA SANCHEZ LEIDY AMANDA",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-vega-sanchez-leidy-amanda-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "miercoles": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "jueves": {
+            "entrada": "13:25",
+            "salida": "16:10"
+          },
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-venegas-hernandez-jose-fabio",
+    "organizacionId": "org-lsjm",
+    "nombre": "VENEGAS HERNANDEZ JOSE FABIO",
+    "cargo": "INGLES CONVER",
+    "horarios": [
+      {
+        "id": "h-p-venegas-hernandez-jose-fabio-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "16:10"
           },
           "miercoles": {
             "entrada": "07:00",
@@ -3365,6 +3234,217 @@
             "entrada": "07:00",
             "salida": "16:10"
           },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-venegas-vargas-veronica-maria",
+    "organizacionId": "org-lsjm",
+    "nombre": "VENEGAS VARGAS VERONICA MARIA",
+    "cargo": "CONTABILIDAD",
+    "horarios": [
+      {
+        "id": "h-p-venegas-vargas-veronica-maria-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": null,
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-villalobos-madrigal-francisco",
+    "organizacionId": "org-lsjm",
+    "nombre": "VILLALOBOS MADRIGAL FRANCISCO",
+    "cargo": "PROFESOR",
+    "horarios": [
+      {
+        "id": "h-p-villalobos-madrigal-francisco-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "10:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "miercoles": {
+            "entrada": "12:00",
+            "salida": "16:10"
+          },
+          "jueves": {
+            "entrada": "10:00",
+            "salida": "16:10"
+          },
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-viquez-calderon-kathia",
+    "organizacionId": "org-lsjm",
+    "nombre": "VIQUEZ CALDERON KATHIA",
+    "cargo": "PSICOLOGIA",
+    "horarios": [
+      {
+        "id": "h-p-viquez-calderon-kathia-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": {
+            "entrada": "07:00",
+            "salida": "11:20"
+          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-zarate-araya-gisella-maria",
+    "organizacionId": "org-lsjm",
+    "nombre": "ZARATE ARAYA GISELLA MARIA",
+    "cargo": "ESPAÑOL",
+    "horarios": [
+      {
+        "id": "h-p-zarate-araya-gisella-maria-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:40",
+            "salida": "14:45"
+          },
+          "miercoles": null,
+          "jueves": {
+            "entrada": "07:00",
+            "salida": "14:45"
+          },
+          "viernes": null,
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-zarate-rojas-diego-armando",
+    "organizacionId": "org-lsjm",
+    "nombre": "ZARATE ROJAS DIEGO ARMANDO",
+    "cargo": "INGLES CONVER",
+    "horarios": [
+      {
+        "id": "h-p-zarate-rojas-diego-armando-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "miercoles": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "jueves": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-zuniga-arias-maria",
+    "organizacionId": "org-lsjm",
+    "nombre": "ZUÑIGA ARIAS MARIA",
+    "cargo": "ART PLASTICAS",
+    "horarios": [
+      {
+        "id": "h-p-zuniga-arias-maria-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": null,
+          "martes": null,
+          "miercoles": null,
+          "jueves": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "viernes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "sabado": null,
+          "domingo": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "p-zuniga-valerio-hanzel-jose",
+    "organizacionId": "org-lsjm",
+    "nombre": "ZUÑIGA VALERIO HANZEL JOSE",
+    "cargo": "RELIGION",
+    "horarios": [
+      {
+        "id": "h-p-zuniga-valerio-hanzel-jose-1",
+        "fechaInicio": null,
+        "fechaFin": null,
+        "horario": {
+          "lunes": {
+            "entrada": "07:00",
+            "salida": "14:45"
+          },
+          "martes": {
+            "entrada": "07:00",
+            "salida": "16:10"
+          },
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
           "sabado": null,
           "domingo": null
         }

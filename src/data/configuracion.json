@@ -1,8 +1,15 @@
 {
+  "organizacionId": "org-lsjm",
   "institucion": "Liceo San José de la Montaña",
   "direccionRegional": "Dirección Regional de Educación de Heredia",
   "circuito": "Circuito 04",
-  "diasLaborales": ["lunes", "martes", "miercoles", "jueves", "viernes"],
+  "diasLaborales": [
+    "lunes",
+    "martes",
+    "miercoles",
+    "jueves",
+    "viernes"
+  ],
   "tolerancia": {
     "entradaMin": 5,
     "salidaMin": 8
