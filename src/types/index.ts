@@ -55,6 +55,12 @@ export interface Profesor {
   nombre: string;
   cargo: string;
   horarios: HorarioProfesor[];
+  /**
+   * Si es `false`, el colaborador está deshabilitado y se omite en los
+   * informes (Detalle de Asistencia y Reporte Mensual). Ausente o `true`
+   * = activo. Mantener opcional preserva compatibilidad con datos previos.
+   */
+  activo?: boolean;
 }
 
 export type TipoMarca = 'Entrada' | 'Salida';

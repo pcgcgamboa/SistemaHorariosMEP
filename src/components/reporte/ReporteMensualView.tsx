@@ -30,11 +30,11 @@ interface CellSelection {
 }
 
 /**
- * Reporte mensual consolidado: pivot funcionarios × días con visualización
+ * Reporte mensual consolidado: pivot colaboradors × días con visualización
  * de incidentes por celda y excepciones (feriados) en la cabecera del día.
  *
  * Filtros: mes/año (manual o desde un Periodo registrado), búsqueda por
- * funcionario, filtro por tipo de incidente.
+ * colaborador, filtro por tipo de incidente.
  */
 export function ReporteMensualView({
   profesores,
@@ -65,6 +65,7 @@ export function ReporteMensualView({
   const profesoresFiltrados = useMemo(() => {
     const q = filtroNombre.trim().toLowerCase();
     return profesores
+      .filter((p) => p.activo !== false)
       .slice()
       .sort((a, b) => a.nombre.localeCompare(b.nombre))
       .filter((p) => !q || p.nombre.toLowerCase().includes(q));
@@ -101,7 +102,7 @@ export function ReporteMensualView({
     return set;
   }, [excepcionesMes, year, month]);
 
-  // Resumen por funcionario: conteo por tipo
+  // Resumen por colaborador: conteo por tipo
   const resumen = useMemo(() => {
     const out = new Map<string, Record<TipoIncidente, number>>();
     for (const p of profesoresFiltrados) {
@@ -152,7 +153,7 @@ export function ReporteMensualView({
         <div>
           <h2>Reporte Mensual</h2>
           <p className="view-sub">
-            Estado consolidado de funcionarios — incidentes y eventos por día.
+            Estado consolidado de colaboradors — incidentes y eventos por día.
           </p>
         </div>
       </header>
@@ -201,7 +202,7 @@ export function ReporteMensualView({
         <input
           className="input-search"
           type="search"
-          placeholder="Buscar funcionario…"
+          placeholder="Buscar colaborador…"
           value={filtroNombre}
           onChange={(e) => setFiltroNombre(e.target.value)}
         />
@@ -222,7 +223,7 @@ export function ReporteMensualView({
         <table className="reporte-grid">
           <thead>
             <tr>
-              <th className="reporte-col-nombre">Funcionario</th>
+              <th className="reporte-col-nombre">Colaborador</th>
               {fechasDelMes.map((f) => {
                 const dow = diaSemana(f);
                 const exc = fechasExcepcion.get(f);
@@ -281,7 +282,7 @@ export function ReporteMensualView({
             })}
             {profesoresFiltrados.length === 0 && (
               <tr>
-                <td colSpan={diasMes + 2} className="table-empty">No hay funcionarios.</td>
+                <td colSpan={diasMes + 2} className="table-empty">No hay colaboradors.</td>
               </tr>
             )}
           </tbody>
@@ -348,7 +349,7 @@ function ResumenTotales({
 
   return (
     <div className="resumen-totales">
-      <h3>Resumen del mes ({profesores.length} funcionarios)</h3>
+      <h3>Resumen del mes ({profesores.length} colaboradors)</h3>
       <div className="resumen-chips">
         {INCIDENTE_CATALOGO.map((c) => {
           const n = totalesPorTipo[c.tipo];

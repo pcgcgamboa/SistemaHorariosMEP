@@ -23,7 +23,7 @@ interface NavItem {
 const NAV: NavItem[] = [
   { id: 'detalle', label: 'Detalle de Asistencia', icon: '📋' },
   { id: 'reporte', label: 'Reporte Mensual', icon: '📊' },
-  { id: 'profesores', label: 'Horario de Profesores', icon: '👥' },
+  { id: 'profesores', label: 'Horario de Colaboradores', icon: '👥' },
   { id: 'marcas', label: 'Marcas del Reloj', icon: '⏱️' },
   { id: 'configuracion', label: 'Configuración', icon: '⚙️' },
   { id: 'organizaciones', label: 'Organizaciones', icon: '🏢', superAdmin: true },

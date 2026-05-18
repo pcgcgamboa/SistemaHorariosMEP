@@ -42,7 +42,18 @@ export function formatHHmm(d: Date | string | null | undefined): string {
   return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
 }
 
+/**
+ * Formatea una fecha como "DD/MM/YYYY".
+ *
+ * Para strings YYYY-MM-DD (sin componente de hora) se parsea literalmente,
+ * evitando el bug de zona horaria: `new Date('2026-04-06')` lo interpreta
+ * como UTC midnight y en zonas negativas (ej. CR UTC-6) se desplaza al día
+ * anterior local. Para strings ISO con hora (`...THH:mm:ss`) sí usamos el
+ * parser nativo, que respeta la hora local.
+ */
 export function formatFecha(iso: string): string {
+  const dateOnly = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if (dateOnly) return `${dateOnly[3]}/${dateOnly[2]}/${dateOnly[1]}`;
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
   return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;

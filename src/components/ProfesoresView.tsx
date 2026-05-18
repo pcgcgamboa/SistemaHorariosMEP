@@ -40,7 +40,7 @@ export function ProfesoresView({ profesores, onUpsert, onRemove, onReplaceAll }:
         if (!Array.isArray(data)) throw new Error('Formato inválido');
         if (
           confirm(
-            `Reemplazar ${profesores.length} profesores actuales con ${data.length} importados?`,
+            `Reemplazar ${profesores.length} colaboradores actuales con ${data.length} importados?`,
           )
         ) {
           onReplaceAll(data);
@@ -48,6 +48,11 @@ export function ProfesoresView({ profesores, onUpsert, onRemove, onReplaceAll }:
       })
       .catch((err) => alert(`Error al importar: ${err.message}`));
     ev.target.value = '';
+  }
+
+  function toggleActivo(p: Profesor) {
+    const activoActual = p.activo !== false;
+    onUpsert({ ...p, activo: !activoActual });
   }
 
   if (creando || editando) {
@@ -71,8 +76,8 @@ export function ProfesoresView({ profesores, onUpsert, onRemove, onReplaceAll }:
     <section className="view">
       <header className="view-header">
         <div>
-          <h2>Horario de Profesores</h2>
-          <p className="view-sub">{profesores.length} funcionarios registrados</p>
+          <h2>Horario de Colaboradores</h2>
+          <p className="view-sub">{profesores.length} colaboradores registrados</p>
         </div>
         <div className="view-actions">
           <button className="btn btn-ghost" type="button" onClick={() => fileRef.current?.click()}>
@@ -93,7 +98,7 @@ export function ProfesoresView({ profesores, onUpsert, onRemove, onReplaceAll }:
             Guardar JSON
           </button>
           <button className="btn btn-primary" type="button" onClick={() => setCreando(true)}>
-            + Nuevo profesor
+            + Nuevo colaborador
           </button>
         </div>
       </header>
@@ -105,7 +110,7 @@ export function ProfesoresView({ profesores, onUpsert, onRemove, onReplaceAll }:
           placeholder="Buscar por nombre o cargo…"
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
-          aria-label="Buscar profesor"
+          aria-label="Buscar colaborador"
         />
       </div>
 
@@ -115,6 +120,7 @@ export function ProfesoresView({ profesores, onUpsert, onRemove, onReplaceAll }:
             <tr>
               <th>Nombre</th>
               <th>Cargo</th>
+              <th>Estado</th>
               <th>Horarios</th>
               {DIAS_SEMANA.map((d) => (
                 <th key={d} className="col-dia">{DIAS_LABEL[d].slice(0, 3)}</th>
@@ -125,8 +131,8 @@ export function ProfesoresView({ profesores, onUpsert, onRemove, onReplaceAll }:
           <tbody>
             {filtrados.length === 0 && (
               <tr>
-                <td colSpan={4 + DIAS_SEMANA.length} className="empty">
-                  No se encontraron profesores
+                <td colSpan={5 + DIAS_SEMANA.length} className="empty">
+                  No se encontraron colaboradores
                 </td>
               </tr>
             )}
@@ -134,8 +140,9 @@ export function ProfesoresView({ profesores, onUpsert, onRemove, onReplaceAll }:
               const horarioActivo = getHorarioForDate(p, hoyIso) ?? p.horarios[0]?.horario ?? null;
               const periodos = p.horarios.filter((h) => h.fechaInicio && h.fechaFin);
               const tienePermanente = p.horarios.some((h) => !h.fechaInicio && !h.fechaFin);
+              const activo = p.activo !== false;
               return (
-              <tr key={p.id}>
+              <tr key={p.id} className={!activo ? 'row-muted' : ''}>
                 <td>
                   <button
                     type="button"
@@ -147,6 +154,11 @@ export function ProfesoresView({ profesores, onUpsert, onRemove, onReplaceAll }:
                   </button>
                 </td>
                 <td className="muted">{p.cargo}</td>
+                <td>
+                  <span className={`badge ${activo ? 'badge-ok' : 'badge-muted'}`}>
+                    {activo ? 'Activo' : 'Deshabilitado'}
+                  </span>
+                </td>
                 <td>
                   <div className="horarios-summary">
                     {tienePermanente && (
@@ -188,10 +200,21 @@ export function ProfesoresView({ profesores, onUpsert, onRemove, onReplaceAll }:
                     Editar
                   </button>
                   <button
+                    className="btn-icon"
+                    type="button"
+                    onClick={() => toggleActivo(p)}
+                    aria-label={activo ? `Deshabilitar ${p.nombre}` : `Habilitar ${p.nombre}`}
+                    title={activo
+                      ? 'Deshabilita al colaborador (no aparece en informes)'
+                      : 'Habilita al colaborador (vuelve a aparecer en informes)'}
+                  >
+                    {activo ? 'Deshabilitar' : 'Habilitar'}
+                  </button>
+                  <button
                     className="btn-icon danger"
                     type="button"
                     onClick={() => {
-                      if (confirm(`Eliminar a ${p.nombre}?`)) onRemove(p.id);
+                      if (confirm(`Eliminar a ${p.nombre} y todas sus marcas? Esta acción no se puede deshacer.`)) onRemove(p.id);
                     }}
                     aria-label={`Eliminar ${p.nombre}`}
                   >

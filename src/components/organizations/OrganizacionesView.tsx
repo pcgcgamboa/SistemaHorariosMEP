@@ -54,7 +54,7 @@ export function OrganizacionesView({
     const c = conteos.get(o.id);
     if (c && (c.profesores > 0 || c.marcas > 0)) {
       alert(
-        `No se puede eliminar "${o.nombre}": tiene ${c.profesores} profesores y ${c.marcas} marcas asociadas. Primero migre o elimine sus datos.`,
+        `No se puede eliminar "${o.nombre}": tiene ${c.profesores} colaboradores y ${c.marcas} marcas asociadas. Primero migre o elimine sus datos.`,
       );
       return;
     }

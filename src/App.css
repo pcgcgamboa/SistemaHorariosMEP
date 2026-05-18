@@ -653,11 +653,37 @@
 .input-search { min-width: 280px; }
 
 .filters {
-  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px;
+  display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 12px;
+  align-items: end;
   background: var(--surface); padding: 16px;
   border: 1px solid var(--border); border-radius: var(--radius);
 }
 @media (max-width: 720px) { .filters { grid-template-columns: 1fr; } }
+
+.filtros-aplicados {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding: 4px 4px 0;
+}
+.filtros-aplicados strong { color: var(--text-h); }
+.filtros-aplicados code {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 0 4px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+}
+
+.detalle-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 0;
+  font-size: 0.85rem;
+}
+.detalle-toolbar .muted {
+  color: var(--text-muted);
+}
 
 /* ===== Form ===== */
 .form-card {
@@ -1184,30 +1210,48 @@
     border: 1pt solid #999;
   }
 
-  /* Row 1: Institución — full width, centered, bold */
+  /* Banda superior: logo MEP | títulos centrados | logo institución */
+  .pr-row-inst-band {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 6px 10px;
+    border-bottom: 1pt solid #999;
+  }
+  .pr-logo {
+    height: 56px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .pr-logo-mep { height: 48px; }
+  .pr-logo-inst { height: 56px; }
+  .pr-titulos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  /* Institución (línea principal) */
   .pr-row-inst {
     font-size: 13pt;
     font-weight: 700;
-    text-align: center;
-    padding: 5px 8px 4px;
-    border-bottom: 1pt solid #999;
     letter-spacing: 0.02em;
+    line-height: 1.2;
   }
-  /* Row 2: DRE */
+  /* DRE */
   .pr-row-dre {
-    font-size: 9pt;
-    text-align: center;
-    padding: 3px 8px;
-    border-bottom: 1pt solid #ccc;
+    font-size: 9.5pt;
     color: #333;
+    line-height: 1.3;
   }
-  /* Row 3: Circuito */
+  /* Circuito */
   .pr-row-circuito {
     font-size: 8.5pt;
-    text-align: center;
-    padding: 2px 8px;
-    border-bottom: 1pt solid #999;
     color: #555;
+    line-height: 1.3;
   }
 
   /* Rows 4–9: two-column split rows */

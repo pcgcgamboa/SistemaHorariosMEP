@@ -46,21 +46,74 @@ const LEGACY_FLAT_KEYS = [
   'configuracion',
 ] as const;
 
+/**
+ * Versión del seed embebido en el bundle. Bumpear este string cada vez que
+ * cambien los JSONs en `src/data/`. Cuando el navegador detecta una versión
+ * distinta a la guardada en localStorage, RESIEMBRA el tenant base
+ * (`org-lsjm`) — esto resuelve el problema de datos viejos persistidos
+ * en navegadores tras un re-deploy.
+ *
+ * Tenants distintos a `org-lsjm` no se tocan: son datos creados por el
+ * usuario (otras organizaciones).
+ */
+const SEED_VERSION = 'v71-2026.02';
+const SEED_VERSION_KEY = `${STORAGE_ROOT}.global.seedVersion`;
+
 let bootDone = false;
 
 /**
  * Garantiza que el almacenamiento esté:
  *  1) Migrado desde el formato plano legacy (sistemaControlReloj.<entidad>)
  *     al formato jerárquico (sistemaControlReloj.tenants.<orgId>.<entidad>).
- *  2) Sembrado con el tenant histórico `org-lsjm` si está completamente vacío.
+ *  2) Sembrado con el tenant histórico `org-lsjm` si nunca se sembró antes
+ *     o si la versión del seed cambió.
  *
  * Idempotente: las llamadas posteriores son no-op.
  */
 export function ensureBoot(): void {
   if (bootDone) return;
   migrateLegacyFlatKeys();
-  seedIfEmpty();
+
+  const storedVersion = localStorage.getItem(SEED_VERSION_KEY);
+  if (storedVersion !== SEED_VERSION) {
+    // Primer arranque o seed nuevo en el bundle: resiembra el tenant base.
+    reseedTenantBase();
+    localStorage.setItem(SEED_VERSION_KEY, SEED_VERSION);
+  }
+
   bootDone = true;
+}
+
+/**
+ * Sobrescribe los datos del tenant base con el seed embebido en el bundle.
+ * Se invoca cuando cambia `SEED_VERSION`. No afecta a otros tenants.
+ */
+function reseedTenantBase(): void {
+  const orgId = LEGACY_TENANT_ID;
+  const profSeed = migrateProfesores(profesoresIniciales as unknown[]).map((p) => ({
+    ...p,
+    organizacionId: p.organizacionId || orgId,
+  }));
+  const marcasSeed = (marcasIniciales as Marca[]).map((m) => ({
+    ...m,
+    organizacionId: m.organizacionId ?? orgId,
+  }));
+  const excSeed = (excepcionesIniciales as Excepcion[]).map((e) => ({
+    ...e,
+    organizacionId: e.organizacionId ?? orgId,
+  }));
+  const obsSeed = (observacionesIniciales as ObservacionOverride[]).map((o) => ({
+    ...o,
+    organizacionId: o.organizacionId ?? orgId,
+  }));
+  const configSeedRaw = configuracionInicial as Omit<Configuracion, 'organizacionId'>;
+  const configSeed: Configuracion = { ...configSeedRaw, organizacionId: orgId };
+
+  profesoresRepo.save(orgId, profSeed);
+  marcasRepo.save(orgId, marcasSeed);
+  excepcionesRepo.save(orgId, excSeed);
+  observacionesRepo.save(orgId, obsSeed);
+  configuracionRepo.save(orgId, [configSeed]);
 }
 
 function migrateLegacyFlatKeys(): void {
@@ -91,40 +144,6 @@ function migrateLegacyFlatKeys(): void {
       // si el blob legacy está corrupto, lo dejamos para no perder datos
     }
   }
-}
-
-function seedIfEmpty(): void {
-  const anyTenantData = LEGACY_FLAT_KEYS.some(
-    (name) => createTenantRepo(name).listTenants().length > 0,
-  );
-  if (anyTenantData) return;
-
-  const orgId = LEGACY_TENANT_ID;
-  // Stamp + persist initial data del Liceo San José de la Montaña.
-  const profSeed = migrateProfesores(profesoresIniciales as unknown[]).map((p) => ({
-    ...p,
-    organizacionId: p.organizacionId || orgId,
-  }));
-  const marcasSeed = (marcasIniciales as Marca[]).map((m) => ({
-    ...m,
-    organizacionId: m.organizacionId ?? orgId,
-  }));
-  const excSeed = (excepcionesIniciales as Excepcion[]).map((e) => ({
-    ...e,
-    organizacionId: e.organizacionId ?? orgId,
-  }));
-  const obsSeed = (observacionesIniciales as ObservacionOverride[]).map((o) => ({
-    ...o,
-    organizacionId: o.organizacionId ?? orgId,
-  }));
-  const configSeedRaw = configuracionInicial as Omit<Configuracion, 'organizacionId'>;
-  const configSeed: Configuracion = { ...configSeedRaw, organizacionId: orgId };
-
-  profesoresRepo.save(orgId, profSeed);
-  marcasRepo.save(orgId, marcasSeed);
-  excepcionesRepo.save(orgId, excSeed);
-  observacionesRepo.save(orgId, obsSeed);
-  configuracionRepo.save(orgId, [configSeed]);
 }
 
 // ---------------------------------------------------------------------------

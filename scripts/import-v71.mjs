@@ -6,8 +6,15 @@
  * el resto del seed.
  *
  * Uso:
- *   node scripts/import-v71.mjs
+ *   node scripts/import-v71.mjs                  # años por defecto (2024+)
+ *   SINCE_YEAR=2025 node scripts/import-v71.mjs  # solo 2025 en adelante
+ *   SINCE_YEAR=0    node scripts/import-v71.mjs  # todos los años
+ *
+ * NOTA: localStorage tiene cuota ~5MB. Cada marca son ~135 bytes JSON,
+ * así que el límite seguro es ~30k marcas. Los años anteriores se pueden
+ * importar luego via la opción "Importar desde Excel" en la app.
  */
+const SINCE_YEAR = Number(process.env.SINCE_YEAR ?? '2024');
 import XLSX from 'xlsx';
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
@@ -179,6 +186,7 @@ const marcas = [];
 let descartadas = 0;
 const cuentaPorAnio = {};
 
+let filtradasPorAnio = 0;
 for (let i = 1; i < rowsM.length; i++) {
   const r = rowsM[i];
   if (!r) continue;
@@ -196,7 +204,11 @@ for (let i = 1; i < rowsM.length; i++) {
     descartadas++;
     continue;
   }
-  const anio = fechaHora.slice(0, 4);
+  const anio = Number(fechaHora.slice(0, 4));
+  if (SINCE_YEAR > 0 && anio < SINCE_YEAR) {
+    filtradasPorAnio++;
+    continue;
+  }
   cuentaPorAnio[anio] = (cuentaPorAnio[anio] || 0) + 1;
   marcas.push({
     id: `m${i}`,
@@ -207,7 +219,9 @@ for (let i = 1; i < rowsM.length; i++) {
   });
 }
 marcas.sort((a, b) => a.fechaHora.localeCompare(b.fechaHora));
-console.log(`  · marcas válidas: ${marcas.length} | descartadas: ${descartadas}`);
+console.log(`  · marcas válidas: ${marcas.length}`);
+console.log(`  · descartadas (parsing): ${descartadas}`);
+if (SINCE_YEAR > 0) console.log(`  · filtradas por SINCE_YEAR=${SINCE_YEAR}: ${filtradasPorAnio}`);
 console.log(`  · por año:`, cuentaPorAnio);
 writeJson('src/data/marcas.json', marcas);
 

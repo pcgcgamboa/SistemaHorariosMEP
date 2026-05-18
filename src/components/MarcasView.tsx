@@ -3,6 +3,7 @@ import type { Creatable, Marca, Periodo, Profesor, TipoMarca } from '../types';
 import { descargarJson, importarJson } from '../storage/datastore';
 import { formatFecha, formatHHmm } from '../utils/time';
 import { buildNameMapping, parseMarcasExcel } from '../utils/excelImport';
+import { horarioPorDefecto } from '../utils/profesor';
 import {
   construirPeriodo,
   detectarPeriodo,
@@ -21,9 +22,11 @@ interface Props {
   onAddMany: (m: Creatable<Marca>[]) => void;
   onRemove: (id: string) => void;
   onRemoveManyByRange: (fechaInicio: string, fechaFin: string) => void;
+  onReassignByNombre: (nombreOrigen: string, nombreDestino: string) => void;
   onReplaceAll: (data: Marca[]) => void;
   onUpsertPeriodo: (p: Creatable<Periodo>) => void;
   onRemovePeriodo: (id: string) => void;
+  onUpsertProfesor: (p: Creatable<Profesor>) => void;
 }
 
 /** Estado pendiente de la importación (mientras el usuario decide en el diálogo). */
@@ -45,10 +48,18 @@ export function MarcasView({
   onAddMany,
   onRemove,
   onRemoveManyByRange,
+  onReassignByNombre,
   onReplaceAll,
   onUpsertPeriodo,
   onRemovePeriodo,
+  onUpsertProfesor,
 }: Props) {
+  // Filtros: dos copias por campo
+  //   - draft*: lo que el usuario está editando en la toolbar
+  //   - filtro*: lo que efectivamente se aplica a la lista (solo al pulsar Buscar)
+  const [draftPersona, setDraftPersona] = useState('');
+  const [draftDesde, setDraftDesde] = useState('');
+  const [draftHasta, setDraftHasta] = useState('');
   const [filtroPersona, setFiltroPersona] = useState('');
   const [filtroDesde, setFiltroDesde] = useState('');
   const [filtroHasta, setFiltroHasta] = useState('');
@@ -59,6 +70,7 @@ export function MarcasView({
   const [nuevoTipo, setNuevoTipo] = useState<TipoMarca>('Entrada');
   const [importStatus, setImportStatus] = useState<string | null>(null);
   const [pendiente, setPendiente] = useState<PendienteImport | null>(null);
+  const [mover, setMover] = useState<{ nombreOrigen: string } | null>(null);
   const fileJsonRef = useRef<HTMLInputElement>(null);
   const fileExcelRef = useRef<HTMLInputElement>(null);
 
@@ -72,11 +84,13 @@ export function MarcasView({
   }, [profesores, marcas]);
 
   const filtradas = useMemo(() => {
+    const q = filtroPersona.trim().toLowerCase();
     return marcas
-      .filter((m) => (filtroPersona ? m.nombre === filtroPersona : true))
+      .filter((m) => (q ? m.nombre.toLowerCase().includes(q) : true))
       .filter((m) => (filtroDesde ? m.fechaHora.slice(0, 10) >= filtroDesde : true))
       .filter((m) => (filtroHasta ? m.fechaHora.slice(0, 10) <= filtroHasta : true))
-      .sort((a, b) => b.fechaHora.localeCompare(a.fechaHora));
+      // Orden ascendente: marca más antigua primero.
+      .sort((a, b) => a.fechaHora.localeCompare(b.fechaHora));
   }, [marcas, filtroPersona, filtroDesde, filtroHasta]);
 
   const totalPaginas = Math.max(1, Math.ceil(filtradas.length / PAGE_SIZE));
@@ -93,13 +107,30 @@ export function MarcasView({
     if (pagina !== 1) setPagina(1);
   }
 
+  const [haBuscado, setHaBuscado] = useState(false);
+
+  function buscar(ev?: React.FormEvent) {
+    if (ev) ev.preventDefault();
+    setFiltroPersona(draftPersona.trim());
+    setFiltroDesde(draftDesde);
+    setFiltroHasta(draftHasta);
+    setPagina(1);
+    setHaBuscado(true);
+  }
+
   function limpiarFiltros() {
+    setDraftPersona('');
+    setDraftDesde('');
+    setDraftHasta('');
     setFiltroPersona('');
     setFiltroDesde('');
     setFiltroHasta('');
+    setPagina(1);
+    setHaBuscado(false);
   }
 
   const hayFiltros = filtroPersona || filtroDesde || filtroHasta;
+  const hayDraft = draftPersona || draftDesde || draftHasta;
 
   function handleSubmit(ev: React.FormEvent) {
     ev.preventDefault();
@@ -149,6 +180,29 @@ export function MarcasView({
       const registeredNames = profesores.map((p) => p.nombre);
       const nameMap = buildNameMapping(result.nombres, registeredNames);
       const unmatched = result.nombres.filter((n) => !nameMap.has(n));
+
+      // Auto-crea colaboradores para los nombres no reconocidos, con un
+      // horario por defecto (L–V 07:00–16:10). El usuario los puede editar
+      // luego desde "Horario de Colaboradores".
+      const creados: string[] = [];
+      for (const nombre of unmatched) {
+        const id = `p${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
+        onUpsertProfesor({
+          id,
+          nombre,
+          cargo: '',
+          horarios: [
+            {
+              id: `h${id}`,
+              fechaInicio: null,
+              fechaFin: null,
+              horario: horarioPorDefecto(),
+            },
+          ],
+        });
+        creados.push(nombre);
+      }
+      // Los nombres recién creados se "auto-mapean" a sí mismos.
       const mapped = result.marcas.map((m) => ({
         ...m,
         nombre: nameMap.get(m.nombre) ?? m.nombre,
@@ -167,7 +221,7 @@ export function MarcasView({
         marcas: mapped,
         origen: f.name,
         deteccion,
-        unmatchedNames: unmatched,
+        unmatchedNames: creados,
       });
       setImportStatus(null);
     } catch (err) {
@@ -233,7 +287,7 @@ export function MarcasView({
     else if (action.tipo === 'reemplazar') msg += ` (reemplazando las anteriores del periodo).`;
     else msg += ` (agregadas al periodo existente).`;
     if (unmatchedNames.length > 0) {
-      msg += ` ${unmatchedNames.length} nombre(s) no coincidieron con Registro Personal.`;
+      msg += ` Se crearon ${unmatchedNames.length} colaborador(es) nuevos con horario por defecto: ${unmatchedNames.join(', ')}.`;
     }
     setImportStatus(msg);
     setPendiente(null);
@@ -295,6 +349,21 @@ export function MarcasView({
         />
       )}
 
+      {mover && (
+        <MoverMarcasDialog
+          profesores={profesores}
+          nombreOrigen={mover.nombreOrigen}
+          cantidad={marcas.filter((m) => m.nombre === mover.nombreOrigen).length}
+          onCancel={() => setMover(null)}
+          onConfirm={(nombreDestino) => {
+            onReassignByNombre(mover.nombreOrigen, nombreDestino);
+            setMover(null);
+            setImportStatus(`Marcas movidas de "${mover.nombreOrigen}" a "${nombreDestino}".`);
+            setTimeout(() => setImportStatus(null), 4000);
+          }}
+        />
+      )}
+
       <PeriodosPanel
         periodos={periodos}
         onRemove={onRemovePeriodo}
@@ -310,7 +379,7 @@ export function MarcasView({
         <h3>Registrar marca manual</h3>
         <div className="form-grid form-grid-4">
           <label className="field">
-            <span className="field-label">Funcionario</span>
+            <span className="field-label">Colaborador</span>
             <select
               className="input"
               value={nuevoNombre}
@@ -359,28 +428,31 @@ export function MarcasView({
         </div>
       </form>
 
-      <div className="filters">
+      <form className="filters" onSubmit={buscar}>
         <label className="field">
           <span className="field-label">Persona</span>
-          <select
+          <input
+            type="search"
             className="input"
-            value={filtroPersona}
-            onChange={(e) => setFiltroPersona(e.target.value)}
-          >
-            <option value="">— Todas —</option>
+            list="marcas-personas-list"
+            placeholder="Nombre completo o parcial…"
+            value={draftPersona}
+            onChange={(e) => setDraftPersona(e.target.value)}
+          />
+          <datalist id="marcas-personas-list">
             {personas.map((p) => (
-              <option key={p} value={p}>{p}</option>
+              <option key={p} value={p} />
             ))}
-          </select>
+          </datalist>
         </label>
         <label className="field">
           <span className="field-label">Desde</span>
           <input
             type="date"
             className="input"
-            value={filtroDesde}
-            onChange={(e) => setFiltroDesde(e.target.value)}
-            max={filtroHasta || undefined}
+            value={draftDesde}
+            onChange={(e) => setDraftDesde(e.target.value)}
+            max={draftHasta || undefined}
           />
         </label>
         <label className="field">
@@ -388,25 +460,46 @@ export function MarcasView({
           <input
             type="date"
             className="input"
-            value={filtroHasta}
-            onChange={(e) => setFiltroHasta(e.target.value)}
-            min={filtroDesde || undefined}
+            value={draftHasta}
+            onChange={(e) => setDraftHasta(e.target.value)}
+            min={draftDesde || undefined}
           />
         </label>
-        {hayFiltros && (
-          <div className="field" style={{ justifyContent: 'flex-end' }}>
+        <div className="field" style={{ justifyContent: 'flex-end', flexDirection: 'row', gap: 8 }}>
+          <button type="submit" className="btn btn-primary">
+            Buscar
+          </button>
+          {(hayFiltros || hayDraft) && (
             <button type="button" className="btn btn-ghost" onClick={limpiarFiltros}>
-              Limpiar filtros
+              Limpiar
             </button>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </form>
+
+      {haBuscado && (
+        <div className="filtros-aplicados">
+          Resultados: <strong>{filtradas.length.toLocaleString('es-CR')}</strong> marca{filtradas.length === 1 ? '' : 's'}
+          {' · '}
+          {filtroPersona ? <>persona contiene <code>{filtroPersona}</code></> : <>todas las personas</>}
+          {' · '}
+          {filtroDesde || filtroHasta ? (
+            <>
+              {filtroDesde ? <>desde {filtroDesde}</> : <>sin fecha inicial</>}
+              {' · '}
+              {filtroHasta ? <>hasta {filtroHasta}</> : <>sin fecha final</>}
+            </>
+          ) : (
+            <>todas las fechas</>
+          )}
+        </div>
+      )}
 
       <div className="table-wrap">
         <table className="data-table">
           <thead>
             <tr>
-              <th>Funcionario</th>
+              <th>Colaborador</th>
               <th>Fecha</th>
               <th>Hora</th>
               <th>Tipo</th>
@@ -428,6 +521,14 @@ export function MarcasView({
                   </span>
                 </td>
                 <td className="col-actions">
+                  <button
+                    type="button"
+                    className="btn-icon"
+                    onClick={() => setMover({ nombreOrigen: m.nombre })}
+                    title="Mover todas las marcas de este colaborador a otro"
+                  >
+                    Mover…
+                  </button>
                   <button
                     type="button"
                     className="btn-icon danger"
@@ -588,4 +689,69 @@ function PeriodosPanel({ periodos, onRemove, onFiltrar }: PeriodosPanelProps) {
 function fmtFecha(d: string): string {
   const [y, m, day] = d.split('-');
   return `${day}/${m}/${y}`;
+}
+
+interface MoverMarcasDialogProps {
+  profesores: Profesor[];
+  nombreOrigen: string;
+  cantidad: number;
+  onCancel: () => void;
+  onConfirm: (nombreDestino: string) => void;
+}
+
+function MoverMarcasDialog({
+  profesores,
+  nombreOrigen,
+  cantidad,
+  onCancel,
+  onConfirm,
+}: MoverMarcasDialogProps) {
+  const candidatos = useMemo(
+    () => profesores.filter((p) => p.nombre !== nombreOrigen).sort((a, b) => a.nombre.localeCompare(b.nombre)),
+    [profesores, nombreOrigen],
+  );
+  const [destino, setDestino] = useState(candidatos[0]?.nombre ?? '');
+
+  return (
+    <div className="modal-backdrop" role="dialog" aria-modal="true">
+      <div className="modal">
+        <header className="modal-header">
+          <h3>Mover marcas a otro colaborador</h3>
+        </header>
+        <div className="modal-body">
+          <p>
+            Se moverán las <strong>{cantidad}</strong> marca{cantidad === 1 ? '' : 's'} de{' '}
+            <strong>{nombreOrigen}</strong> al colaborador seleccionado.
+          </p>
+          {candidatos.length === 0 ? (
+            <p className="field-error">No hay otros colaboradores registrados.</p>
+          ) : (
+            <label className="field">
+              <span className="field-label">Colaborador destino</span>
+              <select
+                className="input"
+                value={destino}
+                onChange={(e) => setDestino(e.target.value)}
+              >
+                {candidatos.map((p) => (
+                  <option key={p.id} value={p.nombre}>{p.nombre}</option>
+                ))}
+              </select>
+            </label>
+          )}
+        </div>
+        <footer className="modal-actions">
+          <button type="button" className="btn btn-secondary" onClick={onCancel}>Cancelar</button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            disabled={!destino}
+            onClick={() => destino && onConfirm(destino)}
+          >
+            Mover marcas
+          </button>
+        </footer>
+      </div>
+    </div>
+  );
 }

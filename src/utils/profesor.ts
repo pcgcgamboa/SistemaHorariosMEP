@@ -1,4 +1,4 @@
-import type { HorarioProfesor, HorarioSemanal, Profesor } from '../types';
+import type { DiaSemana, HorarioProfesor, HorarioSemanal, Profesor } from '../types';
 import { DIAS_SEMANA } from '../types';
 
 /**
@@ -110,4 +110,19 @@ export function nuevoHorario(): HorarioProfesor {
     fechaFin: null,
     horario: emptyHorario(),
   };
+}
+
+/**
+ * Horario por defecto para Colaboradores creados automáticamente al importar
+ * marcas desde Excel. Aplica L–V 07:00–16:10 (jornada típica) y deja el fin
+ * de semana libre. El usuario puede editarlo después desde "Horario de
+ * Colaboradores".
+ */
+export function horarioPorDefecto(): HorarioSemanal {
+  const dias: HorarioSemanal = emptyHorario();
+  const laborales: DiaSemana[] = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
+  for (const d of laborales) {
+    dias[d] = { entrada: '07:00', salida: '16:10' };
+  }
+  return dias;
 }

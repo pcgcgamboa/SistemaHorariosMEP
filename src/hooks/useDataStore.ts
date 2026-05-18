@@ -173,6 +173,37 @@ export function useMarcas(tenantId: string | null) {
     [setAll, tenantId],
   );
 
+  /** Borra todas las marcas del tenant activo asociadas a un nombre de colaborador. */
+  const removeManyByNombre = useCallback(
+    (nombre: string) => {
+      const orgId = requireTenant(tenantId);
+      setAll((prev) =>
+        prev.filter((m) => !(m.organizacionId === orgId && m.nombre === nombre)),
+      );
+    },
+    [setAll, tenantId],
+  );
+
+  /**
+   * Reasigna marcas de un colaborador a otro. Las marcas se identifican por
+   * el nombre origen y se reescriben con el nombre destino (las marcas se
+   * unen a un Profesor por igualdad de `nombre`).
+   */
+  const reassignByNombre = useCallback(
+    (nombreOrigen: string, nombreDestino: string) => {
+      const orgId = requireTenant(tenantId);
+      if (nombreOrigen === nombreDestino) return;
+      setAll((prev) =>
+        prev.map((m) =>
+          m.organizacionId === orgId && m.nombre === nombreOrigen
+            ? { ...m, nombre: nombreDestino }
+            : m,
+        ),
+      );
+    },
+    [setAll, tenantId],
+  );
+
   const replaceAll = useCallback(
     (data: Marca[]) => {
       const orgId = requireTenant(tenantId);
@@ -189,6 +220,8 @@ export function useMarcas(tenantId: string | null) {
     addMany,
     remove,
     removeManyByRange,
+    removeManyByNombre,
+    reassignByNombre,
     replaceAll,
     dirty,
     version,

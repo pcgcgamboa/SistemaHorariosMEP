@@ -67,7 +67,21 @@ export function createTenantRepo<T>(entityName: string): TenantRepo<T> {
     },
 
     save(orgId, items) {
-      localStorage.setItem(keyFor(orgId), JSON.stringify(items));
+      try {
+        localStorage.setItem(keyFor(orgId), JSON.stringify(items));
+      } catch (err) {
+        // QuotaExceededError u otro fallo de localStorage: no rompemos la app
+        // — los datos quedan vivos en memoria, solo no se persisten. El
+        // usuario verá un warning en consola y debería reducir el volumen
+        // (importar menos meses, limpiar marcas viejas) o conectar la
+        // carpeta espejo para usar disco en lugar de localStorage.
+        const e = err as Error;
+        console.error(
+          `[storage] No se pudo guardar "${entityName}" del tenant "${orgId}": ${e.message}. ` +
+            `localStorage tiene cuota limitada (~5MB). Los datos siguen disponibles en memoria ` +
+            `durante esta sesión pero no se persistirán.`,
+        );
+      }
     },
 
     delete(orgId) {
@@ -112,7 +126,16 @@ export function createTenantRepo<T>(entityName: string): TenantRepo<T> {
         const json = JSON.stringify(arr);
         const k = keyFor(orgId);
         if (localStorage.getItem(k) !== json) {
-          localStorage.setItem(k, json);
+          try {
+            localStorage.setItem(k, json);
+          } catch (err) {
+            const e = err as Error;
+            console.error(
+              `[storage] No se pudo guardar "${entityName}" del tenant "${orgId}": ${e.message}. ` +
+                `Posiblemente excede la cuota de localStorage (~5MB). Los datos siguen ` +
+                `disponibles en memoria pero no se persistirán.`,
+            );
+          }
         }
       }
     },

@@ -183,18 +183,19 @@ export function ProfesorForm({ profesor, onCancel, onSave }: Props) {
       nombre: state.nombre.trim().toUpperCase(),
       cargo: state.cargo.trim(),
       horarios,
+      ...(profesor?.activo !== undefined ? { activo: profesor.activo } : {}),
     });
   }
 
   return (
     <form onSubmit={handleSubmit} className="form-card">
       <header className="form-header">
-        <h2>{profesor ? 'Editar profesor' : 'Nuevo profesor'}</h2>
+        <h2>{profesor ? 'Editar colaborador' : 'Nuevo colaborador'}</h2>
       </header>
 
       <div className="form-grid">
         <label className="field">
-          <span className="field-label">Nombre del funcionario *</span>
+          <span className="field-label">Nombre del colaborador *</span>
           <input
             type="text"
             value={state.nombre}

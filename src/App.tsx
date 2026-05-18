@@ -54,7 +54,10 @@ function AppAutenticada() {
 
   const {
     marcas, marcasAll, add, addMany, remove: removeMarca,
-    removeManyByRange: removeMarcasRange, replaceAll: replaceMarcas,
+    removeManyByRange: removeMarcasRange,
+    removeManyByNombre: removeMarcasPorNombre,
+    reassignByNombre: reassignMarcasPorNombre,
+    replaceAll: replaceMarcas,
     version: vMarcas,
   } = useMarcas(tenantId);
 
@@ -223,7 +226,11 @@ function AppAutenticada() {
         <ProfesoresView
           profesores={profesores}
           onUpsert={upsert}
-          onRemove={remove}
+          onRemove={(id) => {
+            const p = profesores.find((x) => x.id === id);
+            remove(id);
+            if (p) removeMarcasPorNombre(p.nombre);
+          }}
           onReplaceAll={replaceProfes}
         />
       )}
@@ -237,9 +244,11 @@ function AppAutenticada() {
           onAddMany={addMany}
           onRemove={removeMarca}
           onRemoveManyByRange={removeMarcasRange}
+          onReassignByNombre={reassignMarcasPorNombre}
           onReplaceAll={replaceMarcas}
           onUpsertPeriodo={upsertPeriodo}
           onRemovePeriodo={removePeriodo}
+          onUpsertProfesor={upsert}
         />
       )}
       {!sinTenant && config && vista === 'configuracion' && (

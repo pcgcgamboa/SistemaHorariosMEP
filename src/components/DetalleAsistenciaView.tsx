@@ -87,7 +87,11 @@ export function DetalleAsistenciaView({
   onSetObservacion,
 }: Props) {
   const profesoresOrdenados = useMemo(
-    () => [...profesores].sort((a, b) => a.nombre.localeCompare(b.nombre)),
+    () =>
+      profesores
+        .filter((p) => p.activo !== false)
+        .slice()
+        .sort((a, b) => a.nombre.localeCompare(b.nombre)),
     [profesores],
   );
 
@@ -106,9 +110,11 @@ export function DetalleAsistenciaView({
     [profesor, desde, hasta],
   );
 
+  const [ocultarSinMarcas, setOcultarSinMarcas] = useState(false);
+
   const detalle = useMemo(() => {
     if (!profesor) return [];
-    return buildDetalleAsistencia({
+    const d = buildDetalleAsistencia({
       profesor,
       marcas,
       desde,
@@ -117,7 +123,22 @@ export function DetalleAsistenciaView({
       excepciones,
       config,
     });
+    // Ordenamiento explícito: fecha ascendente (más antigua → más reciente).
+    return d.slice().sort((a, b) => a.fecha.localeCompare(b.fecha));
   }, [profesor, marcas, desde, hasta, config, excepciones]);
+
+  /**
+   * Filas visibles tras el toggle "Ocultar días sin marcas".
+   * Una fila se considera "sin marcas" cuando no hay marca de entrada NI
+   * salida. Las excepciones (Día Libre con nombre de excepción) se conservan
+   * para que la auditoría no pierda referencia.
+   */
+  const detalleVisible = useMemo(() => {
+    if (!ocultarSinMarcas) return detalle;
+    return detalle.filter(
+      (d) => d.marcaEntrada || d.marcaSalida || d.estado === 'Día Libre',
+    );
+  }, [detalle, ocultarSinMarcas]);
 
   const resumen = useMemo(() => calcularResumen(detalle), [detalle]);
 
@@ -161,7 +182,7 @@ export function DetalleAsistenciaView({
         <header className="view-header">
           <div><h2>Detalle de Asistencia</h2></div>
         </header>
-        <p className="empty">No hay profesores registrados. Agrega uno en "Horario de Profesores".</p>
+        <p className="empty">No hay colaboradores activos registrados. Agrega o habilita uno en "Horario de Colaboradores".</p>
       </section>
     );
   }
@@ -221,7 +242,7 @@ export function DetalleAsistenciaView({
         <div className="sr-controls">
           <div className="filters">
             <label className="field">
-              <span className="field-label">Profesor</span>
+              <span className="field-label">Colaborador</span>
               <select value={profesorId} onChange={(e) => setProfesorId(e.target.value)} className="input">
                 {profesoresOrdenados.map((p) => (
                   <option key={p.id} value={p.id}>{p.nombre}</option>
@@ -255,6 +276,22 @@ export function DetalleAsistenciaView({
       </div>
 
       {/* ===== SCREEN: interactive table ===== */}
+      <div className="detalle-toolbar no-print">
+        <label className="field field-checkbox">
+          <input
+            type="checkbox"
+            checked={ocultarSinMarcas}
+            onChange={(e) => setOcultarSinMarcas(e.target.checked)}
+          />
+          <span>Ocultar días sin marcas</span>
+        </label>
+        {ocultarSinMarcas && (
+          <span className="muted">
+            Mostrando {detalleVisible.length} de {detalle.length} días
+          </span>
+        )}
+      </div>
+
       <div className="table-wrap no-print">
         <table className="data-table">
           <thead>
@@ -273,10 +310,10 @@ export function DetalleAsistenciaView({
             </tr>
           </thead>
           <tbody>
-            {detalle.length === 0 && (
+            {detalleVisible.length === 0 && (
               <tr><td colSpan={9} className="empty">Sin registros en el rango seleccionado.</td></tr>
             )}
-            {detalle.map((d) => {
+            {detalleVisible.map((d) => {
               const override = overridesMap.get(d.fecha);
               const incidente = incidentesMap.get(d.fecha);
               const obsConIncidente = composeObservacion(d, undefined, incidente);
@@ -314,12 +351,24 @@ export function DetalleAsistenciaView({
       <div className="print-report">
         {/* Header block matching Excel rows 1–9 */}
         <div className="pr-header">
-          {/* Row 1: Institución — full width, centered */}
-          <div className="pr-row-inst">{config.institucion}</div>
-          {/* Row 2: DRE */}
-          <div className="pr-row-dre">{config.direccionRegional}</div>
-          {/* Row 3: Circuito */}
-          <div className="pr-row-circuito">{config.circuito}</div>
+          {/* Banda superior: logo MEP a la izquierda, titulos centrados, logo Liceo a la derecha */}
+          <div className="pr-row-inst-band">
+            <img
+              src={`${import.meta.env.BASE_URL}MEP.png`}
+              alt="MEP"
+              className="pr-logo pr-logo-mep"
+            />
+            <div className="pr-titulos">
+              <div className="pr-row-inst">{config.institucion}</div>
+              <div className="pr-row-dre">{config.direccionRegional}</div>
+              <div className="pr-row-circuito">{config.circuito}</div>
+            </div>
+            <img
+              src={`${import.meta.env.BASE_URL}ColSJM.png`}
+              alt={config.institucion}
+              className="pr-logo pr-logo-inst"
+            />
+          </div>
 
           {/* Row 4-5: Título a la izq, Fecha a la derecha */}
           <div className="pr-row-split">
