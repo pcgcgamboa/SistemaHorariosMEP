@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type {
   Configuracion,
   EstadoIncidencia,
@@ -105,12 +105,36 @@ export function DetalleAsistenciaView({
     [profesoresOrdenados, profesorId],
   );
 
+  // Borrador del cuadro de búsqueda de colaborador: el usuario puede teclear
+  // libremente (no se "regresa" al nombre seleccionado mientras escribe).
+  // Se sincroniza con el profesor seleccionado y se "commitea" cuando el
+  // texto coincide exactamente con un nombre o el usuario presiona Buscar.
+  const [draftColaborador, setDraftColaborador] = useState(profesor?.nombre ?? '');
+  useEffect(() => {
+    setDraftColaborador(profesor?.nombre ?? '');
+  }, [profesor?.id]);
+
+  function commitColaborador(texto: string) {
+    const q = texto.trim().toLowerCase();
+    if (!q) return;
+    const exacto = profesoresOrdenados.find((p) => p.nombre.toLowerCase() === q);
+    if (exacto) {
+      setProfesorId(exacto.id);
+      return;
+    }
+    const parcial = profesoresOrdenados.find((p) => p.nombre.toLowerCase().includes(q));
+    if (parcial) {
+      setProfesorId(parcial.id);
+      setDraftColaborador(parcial.nombre);
+    }
+  }
+
   const horarioPeriodo = useMemo(
     () => (profesor ? getHorarioForPeriodo(profesor, desde, hasta) : null),
     [profesor, desde, hasta],
   );
 
-  const [ocultarSinMarcas, setOcultarSinMarcas] = useState(false);
+  const [ocultarSinMarcas, setOcultarSinMarcas] = useState(true);
 
   const detalle = useMemo(() => {
     if (!profesor) return [];
@@ -243,11 +267,36 @@ export function DetalleAsistenciaView({
           <div className="filters">
             <label className="field">
               <span className="field-label">Colaborador</span>
-              <select value={profesorId} onChange={(e) => setProfesorId(e.target.value)} className="input">
+              <input
+                type="search"
+                className="input"
+                list="detalle-colaboradores-list"
+                placeholder="Nombre completo o parcial…"
+                value={draftColaborador}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  setDraftColaborador(v);
+                  // Si el texto coincide exactamente con un nombre (p.ej.
+                  // el usuario lo eligió del datalist), aplicar al instante.
+                  const exacto = profesoresOrdenados.find(
+                    (p) => p.nombre.toLowerCase() === v.toLowerCase(),
+                  );
+                  if (exacto) setProfesorId(exacto.id);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    commitColaborador(draftColaborador);
+                  }
+                }}
+                onBlur={() => commitColaborador(draftColaborador)}
+                aria-label="Buscar colaborador"
+              />
+              <datalist id="detalle-colaboradores-list">
                 {profesoresOrdenados.map((p) => (
-                  <option key={p.id} value={p.id}>{p.nombre}</option>
+                  <option key={p.id} value={p.nombre} />
                 ))}
-              </select>
+              </datalist>
             </label>
             <label className="field">
               <span className="field-label">Desde</span>

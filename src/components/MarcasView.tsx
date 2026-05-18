@@ -430,16 +430,16 @@ export function MarcasView({
 
       <form className="filters" onSubmit={buscar}>
         <label className="field">
-          <span className="field-label">Persona</span>
+          <span className="field-label">Colaborador</span>
           <input
             type="search"
             className="input"
-            list="marcas-personas-list"
+            list="marcas-colaboradores-list"
             placeholder="Nombre completo o parcial…"
             value={draftPersona}
             onChange={(e) => setDraftPersona(e.target.value)}
           />
-          <datalist id="marcas-personas-list">
+          <datalist id="marcas-colaboradores-list">
             {personas.map((p) => (
               <option key={p} value={p} />
             ))}
@@ -481,7 +481,7 @@ export function MarcasView({
         <div className="filtros-aplicados">
           Resultados: <strong>{filtradas.length.toLocaleString('es-CR')}</strong> marca{filtradas.length === 1 ? '' : 's'}
           {' · '}
-          {filtroPersona ? <>persona contiene <code>{filtroPersona}</code></> : <>todas las personas</>}
+          {filtroPersona ? <>colaborador contiene <code>{filtroPersona}</code></> : <>todos los colaboradores</>}
           {' · '}
           {filtroDesde || filtroHasta ? (
             <>
