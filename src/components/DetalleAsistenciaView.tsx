@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type {
   Configuracion,
   EstadoIncidencia,
@@ -104,30 +104,6 @@ export function DetalleAsistenciaView({
     () => profesoresOrdenados.find((p) => p.id === profesorId) ?? profesoresOrdenados[0],
     [profesoresOrdenados, profesorId],
   );
-
-  // Borrador del cuadro de búsqueda de colaborador: el usuario puede teclear
-  // libremente (no se "regresa" al nombre seleccionado mientras escribe).
-  // Se sincroniza con el profesor seleccionado y se "commitea" cuando el
-  // texto coincide exactamente con un nombre o el usuario presiona Buscar.
-  const [draftColaborador, setDraftColaborador] = useState(profesor?.nombre ?? '');
-  useEffect(() => {
-    setDraftColaborador(profesor?.nombre ?? '');
-  }, [profesor?.id]);
-
-  function commitColaborador(texto: string) {
-    const q = texto.trim().toLowerCase();
-    if (!q) return;
-    const exacto = profesoresOrdenados.find((p) => p.nombre.toLowerCase() === q);
-    if (exacto) {
-      setProfesorId(exacto.id);
-      return;
-    }
-    const parcial = profesoresOrdenados.find((p) => p.nombre.toLowerCase().includes(q));
-    if (parcial) {
-      setProfesorId(parcial.id);
-      setDraftColaborador(parcial.nombre);
-    }
-  }
 
   const horarioPeriodo = useMemo(
     () => (profesor ? getHorarioForPeriodo(profesor, desde, hasta) : null),
@@ -267,36 +243,11 @@ export function DetalleAsistenciaView({
           <div className="filters">
             <label className="field">
               <span className="field-label">Colaborador</span>
-              <input
-                type="search"
-                className="input"
-                list="detalle-colaboradores-list"
-                placeholder="Nombre completo o parcial…"
-                value={draftColaborador}
-                onChange={(e) => {
-                  const v = e.target.value;
-                  setDraftColaborador(v);
-                  // Si el texto coincide exactamente con un nombre (p.ej.
-                  // el usuario lo eligió del datalist), aplicar al instante.
-                  const exacto = profesoresOrdenados.find(
-                    (p) => p.nombre.toLowerCase() === v.toLowerCase(),
-                  );
-                  if (exacto) setProfesorId(exacto.id);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    commitColaborador(draftColaborador);
-                  }
-                }}
-                onBlur={() => commitColaborador(draftColaborador)}
-                aria-label="Buscar colaborador"
+              <ColaboradorCombobox
+                profesores={profesoresOrdenados}
+                value={profesor}
+                onSelect={(p) => setProfesorId(p.id)}
               />
-              <datalist id="detalle-colaboradores-list">
-                {profesoresOrdenados.map((p) => (
-                  <option key={p.id} value={p.nombre} />
-                ))}
-              </datalist>
             </label>
             <label className="field">
               <span className="field-label">Desde</span>
@@ -529,6 +480,124 @@ function Kpi({ label, value, tone }: { label: string; value: string | number; to
     <div className={`kpi ${tone ? `kpi-${tone}` : ''}`}>
       <div className="kpi-value">{value}</div>
       <div className="kpi-label">{label}</div>
+    </div>
+  );
+}
+
+interface ColaboradorComboboxProps {
+  profesores: Profesor[];
+  value: Profesor | undefined;
+  onSelect: (p: Profesor) => void;
+}
+
+/**
+ * Combobox de colaborador: combina escritura libre (filtra por coincidencia
+ * parcial) con la posibilidad de abrir la lista COMPLETA y elegir cualquiera.
+ * A diferencia de `<input list>`/`<datalist>`, el botón ▾ muestra todos los
+ * colaboradores aunque el campo ya tenga un nombre escrito.
+ */
+function ColaboradorCombobox({ profesores, value, onSelect }: ColaboradorComboboxProps) {
+  const [abierto, setAbierto] = useState(false);
+  const [query, setQuery] = useState('');
+  // `editando` distingue "el usuario está tecleando para filtrar" de
+  // "mostrar el nombre seleccionado". Cuando no edita, el input muestra el
+  // nombre del colaborador activo.
+  const [editando, setEditando] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  // Cierra al hacer clic fuera del componente.
+  useEffect(() => {
+    if (!abierto) return;
+    function onDocClick(ev: MouseEvent) {
+      if (wrapRef.current && !wrapRef.current.contains(ev.target as Node)) {
+        setAbierto(false);
+        setEditando(false);
+        setQuery('');
+      }
+    }
+    document.addEventListener('mousedown', onDocClick);
+    return () => document.removeEventListener('mousedown', onDocClick);
+  }, [abierto]);
+
+  const q = query.trim().toLowerCase();
+  const filtrados = useMemo(
+    () => (editando && q ? profesores.filter((p) => p.nombre.toLowerCase().includes(q)) : profesores),
+    [profesores, editando, q],
+  );
+
+  function elegir(p: Profesor) {
+    onSelect(p);
+    setAbierto(false);
+    setEditando(false);
+    setQuery('');
+  }
+
+  const textoVisible = editando ? query : value?.nombre ?? '';
+
+  return (
+    <div className="combobox" ref={wrapRef}>
+      <div className="combobox-control">
+        <input
+          type="text"
+          className="input"
+          value={textoVisible}
+          placeholder="Escriba o elija de la lista…"
+          aria-label="Buscar o seleccionar colaborador"
+          onFocus={() => {
+            setEditando(true);
+            setQuery('');
+            setAbierto(true);
+          }}
+          onChange={(e) => {
+            setEditando(true);
+            setQuery(e.target.value);
+            setAbierto(true);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              if (filtrados.length > 0) elegir(filtrados[0]);
+            } else if (e.key === 'Escape') {
+              setAbierto(false);
+              setEditando(false);
+              setQuery('');
+            }
+          }}
+        />
+        <button
+          type="button"
+          className="combobox-toggle"
+          aria-label="Mostrar todos los colaboradores"
+          tabIndex={-1}
+          onClick={() => {
+            setAbierto((v) => !v);
+            setEditando(false);
+            setQuery('');
+          }}
+        >
+          ▾
+        </button>
+      </div>
+      {abierto && (
+        <ul className="combobox-list" role="listbox">
+          {filtrados.length === 0 && (
+            <li className="combobox-empty">Sin coincidencias</li>
+          )}
+          {filtrados.map((p) => (
+            <li key={p.id}>
+              <button
+                type="button"
+                role="option"
+                aria-selected={p.id === value?.id}
+                className={`combobox-option ${p.id === value?.id ? 'is-selected' : ''}`}
+                onClick={() => elegir(p)}
+              >
+                {p.nombre}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

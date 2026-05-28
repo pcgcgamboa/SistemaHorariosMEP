@@ -114,6 +114,58 @@
 .field-checkbox { flex-direction: row; align-items: center; gap: 8px; }
 .field-error { color: var(--danger); font-size: 0.75rem; font-style: normal; }
 
+/* ===== Combobox (input + lista completa desplegable) ===== */
+.combobox { position: relative; }
+.combobox-control { display: flex; align-items: stretch; }
+.combobox-control .input { flex: 1; border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.combobox-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-left: none;
+  border-top-right-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.7rem;
+}
+.combobox-toggle:hover { color: var(--text-h); }
+.combobox-list {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  max-height: 280px;
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+.combobox-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+.combobox-option:hover { background: var(--surface-2); }
+.combobox-option.is-selected { background: var(--primary-bg); color: var(--primary); font-weight: 600; }
+.combobox-empty { padding: 8px 10px; color: var(--text-muted); font-size: 0.85rem; }
+
 /* ===== Org form ===== */
 .org-form {
   display: flex;

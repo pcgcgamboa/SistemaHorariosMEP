@@ -714,12 +714,12 @@ function MoverMarcasDialog({
 
   return (
     <div className="modal-backdrop" role="dialog" aria-modal="true">
-      <div className="modal">
+      <div className="modal-card">
         <header className="modal-header">
           <h3>Mover marcas a otro colaborador</h3>
         </header>
         <div className="modal-body">
-          <p>
+          <p className="modal-lead">
             Se moverán las <strong>{cantidad}</strong> marca{cantidad === 1 ? '' : 's'} de{' '}
             <strong>{nombreOrigen}</strong> al colaborador seleccionado.
           </p>
@@ -740,7 +740,7 @@ function MoverMarcasDialog({
             </label>
           )}
         </div>
-        <footer className="modal-actions">
+        <footer className="modal-footer" style={{ gap: 8 }}>
           <button type="button" className="btn btn-secondary" onClick={onCancel}>Cancelar</button>
           <button
             type="button"
