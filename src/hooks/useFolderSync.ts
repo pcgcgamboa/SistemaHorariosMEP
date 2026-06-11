@@ -99,6 +99,13 @@ export function useFolderSync(datasets: SyncableDataset[]) {
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const initialised = useRef(false);
 
+  // Mantener referencia actualizada a `datasets` para el flush manual,
+  // sin que el callback dependa del array (que cambia en cada render).
+  const datasetsRef = useRef(datasets);
+  useEffect(() => {
+    datasetsRef.current = datasets;
+  }, [datasets]);
+
   useEffect(() => {
     if (!initialised.current) {
       initialised.current = true;
@@ -110,7 +117,7 @@ export function useFolderSync(datasets: SyncableDataset[]) {
     saveTimer.current = setTimeout(async () => {
       setState((s) => ({ ...s, saving: true, lastError: null }));
       try {
-        for (const ds of datasets) {
+        for (const ds of datasetsRef.current) {
           await writeJsonToFolder(ds.path, ds.data);
         }
         setState((s) => ({ ...s, saving: false, lastSavedAt: new Date() }));
@@ -132,5 +139,33 @@ export function useFolderSync(datasets: SyncableDataset[]) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [versions, state.folderName, state.needsPermission]);
 
-  return { state, connectFolder, requestAccess, disconnect };
+  /**
+   * Fuerza un flush inmediato del espejo de carpeta, saltándose el debounce.
+   * Si no hay carpeta conectada, no hace nada (el almacenamiento interno ya
+   * se guarda al instante en cada mutación).
+   */
+  const flushNow = useCallback(async () => {
+    if (!state.folderName || state.needsPermission) return;
+    if (saveTimer.current) {
+      clearTimeout(saveTimer.current);
+      saveTimer.current = null;
+    }
+    setState((s) => ({ ...s, saving: true, lastError: null }));
+    try {
+      for (const ds of datasetsRef.current) {
+        await writeJsonToFolder(ds.path, ds.data);
+      }
+      setState((s) => ({ ...s, saving: false, lastSavedAt: new Date() }));
+    } catch (err) {
+      const e = err as Error;
+      setState((s) => ({
+        ...s,
+        saving: false,
+        lastError: e.message,
+        needsPermission: e.name === 'NotAllowedError' ? true : s.needsPermission,
+      }));
+    }
+  }, [state.folderName, state.needsPermission]);
+
+  return { state, connectFolder, requestAccess, disconnect, flushNow };
 }

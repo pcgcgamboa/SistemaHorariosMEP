@@ -166,6 +166,32 @@
 .combobox-option.is-selected { background: var(--primary-bg); color: var(--primary); font-weight: 600; }
 .combobox-empty { padding: 8px 10px; color: var(--text-muted); font-size: 0.85rem; }
 
+/* ===== Columna de justificación en Detalle de Asistencia ===== */
+.col-justificacion { white-space: nowrap; }
+.incidente-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 4px;
+  border: none;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.incidente-chip:hover { filter: brightness(1.08); }
+.incidente-chip-codigo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  font-size: 0.72rem;
+}
+
 /* ===== Org form ===== */
 .org-form {
   display: flex;

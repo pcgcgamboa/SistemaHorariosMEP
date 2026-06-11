@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Layout, type Vista } from './components/Layout';
 import { DetalleAsistenciaView } from './components/DetalleAsistenciaView';
 import { ProfesoresView } from './components/ProfesoresView';
@@ -162,7 +162,21 @@ function AppAutenticada() {
     incidentesAll, vIncidentes,
   ]);
 
-  const { state: syncState, connectFolder, requestAccess, disconnect } = useFolderSync(syncDatasets);
+  const { state: syncState, connectFolder, requestAccess, disconnect, flushNow } = useFolderSync(syncDatasets);
+
+  // Marca de tiempo de la última mutación de datos (cualquier entidad).
+  // Se actualiza cuando cualquiera de los `version` cambia → indicador
+  // "Guardado · hace Xs" en SaveBar.
+  const versionsKey = `${vOrgs}-${vProfes}-${vMarcas}-${vExc}-${vObs}-${vConfig}-${vPeriodos}-${vIncidentes}-${usersVersion}`;
+  const [lastChangeAt, setLastChangeAt] = useState<Date | null>(null);
+  const firstVersionTick = useRef(true);
+  useEffect(() => {
+    if (firstVersionTick.current) {
+      firstVersionTick.current = false;
+      return;
+    }
+    setLastChangeAt(new Date());
+  }, [versionsKey]);
 
   const sinTenant = tenantId === null;
 
@@ -178,9 +192,15 @@ function AppAutenticada() {
     >
       <SaveBar
         sync={syncState}
+        lastChangeAt={lastChangeAt}
         onConnectFolder={connectFolder}
         onRequestAccess={requestAccess}
         onDisconnect={disconnect}
+        onSaveNow={async () => {
+          await flushNow();
+          // Marca el momento del "guardado manual" para que el indicador lo refleje.
+          setLastChangeAt(new Date());
+        }}
       />
 
       {vista === 'organizaciones' && isSuperAdmin && (
@@ -211,6 +231,7 @@ function AppAutenticada() {
           config={config}
           observaciones={observaciones}
           onSetObservacion={setOverride}
+          onSetIncidente={setIncidente}
         />
       )}
       {!sinTenant && vista === 'reporte' && (

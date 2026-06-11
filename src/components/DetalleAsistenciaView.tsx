@@ -7,8 +7,9 @@ import type {
   Marca,
   ObservacionOverride,
   Profesor,
+  TipoIncidente,
 } from '../types';
-import { DIAS_LABEL, DIAS_SEMANA } from '../types';
+import { DIAS_LABEL, DIAS_SEMANA, INCIDENTE_BY_TIPO } from '../types';
 import {
   buildDetalleAsistencia,
   calcularResumen,
@@ -18,6 +19,7 @@ import {
 } from '../utils/asistencia';
 import { getHorarioForPeriodo } from '../utils/profesor';
 import { formatFecha, minutesToHHmm } from '../utils/time';
+import { IncidenteEditor } from './reporte/IncidenteEditor';
 
 interface Props {
   profesores: Profesor[];
@@ -27,6 +29,7 @@ interface Props {
   config: Configuracion;
   observaciones: ObservacionOverride[];
   onSetObservacion: (profesorId: string, fecha: string, accion: 'limpiar' | 'cambiar' | null, texto?: string) => void;
+  onSetIncidente: (profesorId: string, fecha: string, tipo: TipoIncidente | null, descripcion?: string) => void;
 }
 
 function defaultRange(marcas: Marca[]): { desde: string; hasta: string } {
@@ -85,7 +88,10 @@ export function DetalleAsistenciaView({
   config,
   observaciones,
   onSetObservacion,
+  onSetIncidente,
 }: Props) {
+  // Día seleccionado para editar incidente (justificar ausencia, etc.).
+  const [incidenteEdit, setIncidenteEdit] = useState<{ fecha: string; actual: Incidente | null } | null>(null);
   const profesoresOrdenados = useMemo(
     () =>
       profesores
@@ -143,13 +149,13 @@ export function DetalleAsistenciaView({
   const resumen = useMemo(() => calcularResumen(detalle), [detalle]);
 
   // Per-day observation overrides keyed by YYYY-MM-DD
-  const overridesMap = useMemo(
+  const overridesMap = useMemo<Map<string, ObservacionOverride>>(
     () => (profesor ? indexOverrides(observaciones, profesor.id) : new Map()),
     [observaciones, profesor],
   );
 
   // Per-day incidentes registrados para este profesor
-  const incidentesMap = useMemo(
+  const incidentesMap = useMemo<Map<string, Incidente>>(
     () => (profesor ? indexIncidentes(incidentes, profesor.id) : new Map()),
     [incidentes, profesor],
   );
@@ -304,6 +310,9 @@ export function DetalleAsistenciaView({
               <th>Tardía</th>
               <th>Anticipada</th>
               <th>Estado (auto)</th>
+              <th title="Registrar ausencia, incapacidad, convocatoria u otro incidente del día.">
+                Justificación
+              </th>
               <th title="Controla qué se imprime en Observaciones. Replica columnas Q/R del Excel.">
                 Mostrar en impresión
               </th>
@@ -311,12 +320,13 @@ export function DetalleAsistenciaView({
           </thead>
           <tbody>
             {detalleVisible.length === 0 && (
-              <tr><td colSpan={9} className="empty">Sin registros en el rango seleccionado.</td></tr>
+              <tr><td colSpan={10} className="empty">Sin registros en el rango seleccionado.</td></tr>
             )}
             {detalleVisible.map((d) => {
               const override = overridesMap.get(d.fecha);
               const incidente = incidentesMap.get(d.fecha);
               const obsConIncidente = composeObservacion(d, undefined, incidente);
+              const cat = incidente ? INCIDENTE_BY_TIPO[incidente.tipo] : null;
               return (
                 <tr key={d.fecha} className={d.estado === 'Día Libre' ? 'row-muted' : ''}>
                   <td>{formatFecha(d.fecha)}</td>
@@ -331,6 +341,28 @@ export function DetalleAsistenciaView({
                   <td>{d.diferenciaEntrada > 0 ? minutesToHHmm(d.diferenciaEntrada) : '—'}</td>
                   <td>{d.diferenciaSalida > 0 ? minutesToHHmm(d.diferenciaSalida) : '—'}</td>
                   <td><span className={ESTADO_BADGE[d.estado]}>{d.estado}</span></td>
+                  <td className="col-justificacion">
+                    {incidente && cat ? (
+                      <button
+                        type="button"
+                        className="incidente-chip"
+                        style={{ background: cat.color, color: cat.colorTexto }}
+                        onClick={() => setIncidenteEdit({ fecha: d.fecha, actual: incidente })}
+                        title={incidente.descripcion || cat.label}
+                      >
+                        <span className="incidente-chip-codigo">{cat.codigo}</span>
+                        {cat.label}
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="btn-icon"
+                        onClick={() => setIncidenteEdit({ fecha: d.fecha, actual: null })}
+                      >
+                        Justificar
+                      </button>
+                    )}
+                  </td>
                   <td className="col-override">
                     <OverrideEditor
                       profesorId={profesor.id}
@@ -346,6 +378,23 @@ export function DetalleAsistenciaView({
           </tbody>
         </table>
       </div>
+
+      {incidenteEdit && profesor && (
+        <IncidenteEditor
+          profesorNombre={profesor.nombre}
+          fecha={incidenteEdit.fecha}
+          actual={incidenteEdit.actual}
+          onSubmit={(tipo, descripcion) => {
+            onSetIncidente(profesor.id, incidenteEdit.fecha, tipo, descripcion);
+            setIncidenteEdit(null);
+          }}
+          onClear={() => {
+            onSetIncidente(profesor.id, incidenteEdit.fecha, null);
+            setIncidenteEdit(null);
+          }}
+          onCancel={() => setIncidenteEdit(null)}
+        />
+      )}
 
       {/* ===== PRINT-ONLY: Excel-format report ===== */}
       <div className="print-report">
