@@ -9,8 +9,9 @@ interface Props {
 }
 
 export function UsuariosView({ organizaciones }: Props) {
-  const { users, session, crearUsuario, actualizarUsuario, eliminarUsuario } = useAuth();
+  const { users, session, crearUsuario, actualizarUsuario, eliminarUsuario, backend } = useAuth();
   const currentUserId = session?.user.id ?? null;
+  const dashboardOnly = backend === 'supabase';
 
   const [modo, setModo] = useState<'lista' | 'crear' | 'editar'>('lista');
   const [editando, setEditando] = useState<Usuario | null>(null);
@@ -101,15 +102,33 @@ export function UsuariosView({ organizaciones }: Props) {
         <div>
           <h2>Usuarios</h2>
           <p className="view-sub">
-            Administre todas las cuentas y sus roles. {users.length} usuarios en total.
+            {dashboardOnly
+              ? `Vista consolidada de los usuarios autenticados contra Supabase. ${users.length} en total.`
+              : `Administre todas las cuentas y sus roles. ${users.length} usuarios en total.`}
           </p>
         </div>
         <div className="view-actions">
-          <button type="button" className="btn btn-primary" onClick={() => setModo('crear')}>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => setModo('crear')}
+            disabled={dashboardOnly}
+            title={dashboardOnly
+              ? 'En modo Supabase, los usuarios se crean desde Authentication → Users en el dashboard'
+              : ''}
+          >
             + Nuevo usuario
           </button>
         </div>
       </header>
+
+      {dashboardOnly && (
+        <div className="alert alert-info" style={{ marginBottom: 12 }}>
+          ℹ Para crear, eliminar o cambiar contraseñas use el dashboard de Supabase
+          (<a href="https://supabase.com/dashboard/project/xwzebwdeuhysvvlscqow/auth/users" target="_blank" rel="noopener noreferrer">Authentication → Users</a>).
+          Desde aquí puede editar nombre, rol y organización; el cambio se sincroniza al instante.
+        </div>
+      )}
 
       {errorAccion && (
         <div className="auth-error" role="alert">{errorAccion}</div>
@@ -198,8 +217,14 @@ export function UsuariosView({ organizaciones }: Props) {
                       type="button"
                       className="btn-icon danger"
                       onClick={() => handleEliminar(u)}
-                      disabled={esYo}
-                      title={esYo ? 'No puedes eliminar tu propio usuario' : ''}
+                      disabled={esYo || dashboardOnly}
+                      title={
+                        esYo
+                          ? 'No puedes eliminar tu propio usuario'
+                          : dashboardOnly
+                            ? 'Eliminar desde el dashboard de Supabase (Authentication → Users)'
+                            : ''
+                      }
                     >
                       Eliminar
                     </button>

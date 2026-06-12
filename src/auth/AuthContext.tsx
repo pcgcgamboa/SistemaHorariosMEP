@@ -10,6 +10,8 @@ import {
 import type { Rol, Session, Usuario, UsuarioPublico } from '../types';
 import { loadSession, loadUsers, saveSession, saveUsers } from '../storage/authStore';
 import { hashPassword, verifyPassword } from './passwordHash';
+import { supabase, supabaseEnabled } from '../storage/supabase';
+import { usuariosRepoSb } from '../storage/supabaseRepos';
 
 /** Duración de sesión: 8 horas. */
 const SESSION_TTL_MS = 8 * 60 * 60 * 1000;
@@ -20,18 +22,26 @@ interface AuthContextValue {
   users: Usuario[];
   /** Token incremental que cambia con cada mutación de usuarios — útil para folder sync. */
   usersVersion: number;
-  login: (username: string, password: string) => Promise<{ ok: true } | { ok: false; error: string }>;
+  /**
+   * Inicia sesión. El primer argumento es:
+   *  - en modo local: `username` (3-32 chars, a-z0-9._-)
+   *  - en modo Supabase: `email` (RFC 5322).
+   */
+  login: (usernameOrEmail: string, password: string) => Promise<{ ok: true } | { ok: false; error: string }>;
   logout: () => void;
   cambiarOrganizacionActiva: (organizacionId: string | null) => void;
-  /** SUPER_ADMIN únicamente. */
+  /** SUPER_ADMIN únicamente. En modo Supabase lanza error (se gestiona en dashboard). */
   crearUsuario: (data: NuevoUsuarioInput) => Promise<Usuario>;
-  /** SUPER_ADMIN únicamente. Patch incluye opcionalmente `password` para cambio de clave. */
+  /** SUPER_ADMIN únicamente. En modo Supabase solo permite editar el perfil (no password ni rol crítico). */
   actualizarUsuario: (
     id: string,
     patch: Partial<Omit<Usuario, 'id' | 'passwordHash'>> & { password?: string },
   ) => Promise<void>;
-  /** SUPER_ADMIN únicamente. */
+  /** SUPER_ADMIN únicamente. En modo Supabase lanza error (se gestiona en dashboard). */
   eliminarUsuario: (id: string) => void;
+  /** True si la auth se está manejando contra Supabase. La UI puede usarlo para
+   *  ajustar etiquetas (Usuario → Email, ocultar botones de "Nuevo usuario"). */
+  backend: 'local' | 'supabase';
 }
 
 export interface NuevoUsuarioInput {
@@ -51,14 +61,13 @@ function toPublico(u: Usuario): UsuarioPublico {
   return rest;
 }
 
-/** Reglas de invariantes que protegen la integridad de cuentas. */
+/** Reglas de invariantes que protegen la integridad de cuentas (modo local). */
 function assertSafeMutation(
   current: Usuario,
   next: Partial<Usuario>,
   all: Usuario[],
   acting: Usuario | null,
 ): void {
-  // No degradar / desactivar al último SUPER_ADMIN.
   if (current.rol === 'SUPER_ADMIN') {
     const stillSuper = all.filter(
       (u) => u.rol === 'SUPER_ADMIN' && u.activo && u.id !== current.id,
@@ -66,12 +75,9 @@ function assertSafeMutation(
     const willStaySuper = (next.rol ?? current.rol) === 'SUPER_ADMIN';
     const willStayActive = next.activo ?? current.activo;
     if ((!willStaySuper || !willStayActive) && stillSuper === 0) {
-      throw new Error(
-        'No se puede dejar el sistema sin un Administrador General activo.',
-      );
+      throw new Error('No se puede dejar el sistema sin un Administrador General activo.');
     }
   }
-  // El usuario actual no puede degradarse a sí mismo ni desactivarse.
   if (acting && acting.id === current.id) {
     if (next.rol && next.rol !== current.rol) {
       throw new Error('No puedes cambiar tu propio rol.');
@@ -82,7 +88,178 @@ function assertSafeMutation(
   }
 }
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+const DASHBOARD_ONLY_MSG =
+  'En modo Supabase, los usuarios se gestionan desde el dashboard (Authentication → Users). Próxima iteración puede agregar una Edge Function para crearlos desde aquí.';
+
+// ============================================================================
+// Provider: Supabase Auth
+// ============================================================================
+
+function SupabaseAuthProvider({ children }: { children: ReactNode }) {
+  const [ready, setReady] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
+  const [users, setUsers] = useState<Usuario[]>([]);
+  const [usersVersion, setUsersVersion] = useState(0);
+
+  // Bootstrap + suscripción a cambios de sesión
+  useEffect(() => {
+    if (!supabase) return;
+    let cancelled = false;
+
+    async function buildSession(uid: string, expiresAt: number): Promise<Session | null> {
+      const profile = await usuariosRepoSb.findById(uid);
+      if (!profile || !profile.activo) return null;
+      return {
+        user: toPublico(profile),
+        organizacionActivaId: profile.rol === 'SUPER_ADMIN' ? null : profile.organizacionId,
+        expiresAt,
+      };
+    }
+
+    async function refreshUsers() {
+      try {
+        const all = await usuariosRepoSb.loadAll();
+        if (cancelled) return;
+        setUsers(all);
+        setUsersVersion((v) => v + 1);
+      } catch (err) {
+        if (!cancelled) {
+
+          console.error('[supabase] No se pudo cargar la tabla usuarios:', err);
+        }
+      }
+    }
+
+    (async () => {
+      const { data } = await supabase!.auth.getSession();
+      if (data.session?.user) {
+        const exp = (data.session.expires_at ?? Date.now() / 1000 + SESSION_TTL_MS / 1000) * 1000;
+        const built = await buildSession(data.session.user.id, exp);
+        if (cancelled) return;
+        setSession(built);
+        if (built) await refreshUsers();
+      }
+      if (!cancelled) setReady(true);
+    })();
+
+    const {
+      data: { subscription },
+    } = supabase!.auth.onAuthStateChange(async (_event, supaSession) => {
+      if (!supaSession?.user) {
+        if (!cancelled) {
+          setSession(null);
+          setUsers([]);
+        }
+        return;
+      }
+      const exp = (supaSession.expires_at ?? Date.now() / 1000 + SESSION_TTL_MS / 1000) * 1000;
+      const built = await buildSession(supaSession.user.id, exp);
+      if (cancelled) return;
+      setSession(built);
+      if (built) await refreshUsers();
+    });
+
+    return () => {
+      cancelled = true;
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  const login = useCallback<AuthContextValue['login']>(async (emailOrUsername, password) => {
+    if (!supabase) return { ok: false, error: 'Supabase no está configurado' };
+    if (!emailOrUsername.includes('@')) {
+      return { ok: false, error: 'En modo Supabase debe usar su email para iniciar sesión.' };
+    }
+    const { error } = await supabase.auth.signInWithPassword({
+      email: emailOrUsername.trim(),
+      password,
+    });
+    if (error) return { ok: false, error: error.message };
+    return { ok: true };
+  }, []);
+
+  const logout = useCallback(() => {
+    if (!supabase) return;
+    void supabase.auth.signOut();
+    setSession(null);
+    setUsers([]);
+  }, []);
+
+  const cambiarOrganizacionActiva = useCallback((organizacionActivaId: string | null) => {
+    setSession((prev) => {
+      if (!prev) return prev;
+      if (prev.user.rol !== 'SUPER_ADMIN') return prev;
+      return { ...prev, organizacionActivaId };
+    });
+  }, []);
+
+  const crearUsuario = useCallback<AuthContextValue['crearUsuario']>(async () => {
+    throw new Error(DASHBOARD_ONLY_MSG);
+  }, []);
+
+  const actualizarUsuario = useCallback<AuthContextValue['actualizarUsuario']>(
+    async (id, patch) => {
+      // Permitimos editar el perfil (nombre, email, organización, activo, rol)
+      // pero NO el password. Para password el usuario usa "Reset password" en Supabase
+      // o el SUPER_ADMIN lo cambia desde el dashboard.
+      if (patch.password) {
+        throw new Error(
+          'Para cambiar la clave use "Forgot password" o el dashboard de Supabase.',
+        );
+      }
+      const target = users.find((u) => u.id === id);
+      if (!target) throw new Error('Usuario no encontrado');
+      const next: Usuario = {
+        ...target,
+        ...patch,
+      };
+      await usuariosRepoSb.upsert(next);
+      setUsers((prev) => prev.map((u) => (u.id === id ? next : u)));
+      setUsersVersion((v) => v + 1);
+    },
+    [users],
+  );
+
+  const eliminarUsuario = useCallback<AuthContextValue['eliminarUsuario']>(() => {
+    throw new Error(DASHBOARD_ONLY_MSG);
+  }, []);
+
+  const value = useMemo<AuthContextValue>(
+    () => ({
+      ready,
+      session,
+      users,
+      usersVersion,
+      login,
+      logout,
+      cambiarOrganizacionActiva,
+      crearUsuario,
+      actualizarUsuario,
+      eliminarUsuario,
+      backend: 'supabase',
+    }),
+    [
+      ready,
+      session,
+      users,
+      usersVersion,
+      login,
+      logout,
+      cambiarOrganizacionActiva,
+      crearUsuario,
+      actualizarUsuario,
+      eliminarUsuario,
+    ],
+  );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+// ============================================================================
+// Provider: Local (SHA-256 + localStorage)
+// ============================================================================
+
+function LocalAuthProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
   const [users, setUsers] = useState<Usuario[]>([]);
@@ -185,7 +362,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const current = users[idx];
       const acting = session ? users.find((u) => u.id === session.user.id) ?? null : null;
 
-      // Sanitización de patch.
       const cleaned: Partial<Usuario> = { ...patch };
       delete (cleaned as Partial<Usuario> & { password?: string }).password;
       if (cleaned.rol === 'SUPER_ADMIN') {
@@ -214,19 +390,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     (id) => {
       const target = users.find((u) => u.id === id);
       if (!target) return;
-      // No auto-eliminación.
       if (session && session.user.id === id) {
         throw new Error('No puedes eliminar tu propio usuario.');
       }
-      // No eliminar al último SUPER_ADMIN.
       if (target.rol === 'SUPER_ADMIN') {
         const otrosSuper = users.filter(
           (u) => u.rol === 'SUPER_ADMIN' && u.activo && u.id !== id,
         ).length;
         if (otrosSuper === 0) {
-          throw new Error(
-            'No se puede eliminar al último Administrador General activo.',
-          );
+          throw new Error('No se puede eliminar al último Administrador General activo.');
         }
       }
       persistUsers(users.filter((u) => u.id !== id));
@@ -246,6 +418,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       crearUsuario,
       actualizarUsuario,
       eliminarUsuario,
+      backend: 'local',
     }),
     [
       ready,
@@ -262,6 +435,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+// ============================================================================
+// Fachada
+// ============================================================================
+
+export function AuthProvider({ children }: { children: ReactNode }) {
+  return supabaseEnabled
+    ? <SupabaseAuthProvider>{children}</SupabaseAuthProvider>
+    : <LocalAuthProvider>{children}</LocalAuthProvider>;
 }
 
 export function useAuth(): AuthContextValue {

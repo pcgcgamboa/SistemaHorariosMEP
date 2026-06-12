@@ -48,6 +48,12 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - run: pnpm build
+        env:
+          # Credenciales de Supabase para que el bundle de producción pueda
+          # autenticar y consultar la DB. La anon key es JWT pública (la
+          # protección real la da Row Level Security en Postgres).
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
       - uses: actions/configure-pages@v5
 

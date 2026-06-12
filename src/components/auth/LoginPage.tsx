@@ -2,17 +2,19 @@ import { useState, type FormEvent } from 'react';
 import { useAuth } from '../../auth/AuthContext';
 
 export function LoginPage() {
-  const { login } = useAuth();
-  const [username, setUsername] = useState('');
+  const { login, backend } = useAuth();
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  const usaEmail = backend === 'supabase';
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
-    const res = await login(username.trim(), password);
+    const res = await login(identifier.trim(), password);
     setSubmitting(false);
     if (!res.ok) setError(res.error);
   }
@@ -30,14 +32,15 @@ export function LoginPage() {
 
         <form onSubmit={onSubmit} className="auth-form" noValidate>
           <label className="field">
-            <span>Usuario</span>
+            <span>{usaEmail ? 'Email' : 'Usuario'}</span>
             <input
-              type="text"
-              autoComplete="username"
+              type={usaEmail ? 'email' : 'text'}
+              autoComplete={usaEmail ? 'email' : 'username'}
               autoFocus
               required
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
+              placeholder={usaEmail ? 'tu@correo.com' : 'admin'}
             />
           </label>
 
@@ -60,8 +63,9 @@ export function LoginPage() {
         </form>
 
         <p className="auth-hint">
-          Sus credenciales se verifican localmente. La información mostrada
-          luego se filtra por su organización.
+          {usaEmail
+            ? 'Las credenciales se verifican contra Supabase Auth. Si olvidaste tu clave, contacta al administrador.'
+            : 'Sus credenciales se verifican localmente. La información mostrada luego se filtra por su organización.'}
         </p>
       </div>
     </div>
