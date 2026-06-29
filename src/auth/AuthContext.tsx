@@ -4,11 +4,19 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from 'react';
 import type { Rol, Session, Usuario, UsuarioPublico } from '../types';
-import { loadSession, loadUsers, saveSession, saveUsers } from '../storage/authStore';
+import {
+  loadSession,
+  loadSupabaseOrgActiva,
+  loadUsers,
+  saveSession,
+  saveSupabaseOrgActiva,
+  saveUsers,
+} from '../storage/authStore';
 import { hashPassword, verifyPassword } from './passwordHash';
 import { supabase, supabaseEnabled } from '../storage/supabase';
 import { usuariosRepoSb } from '../storage/supabaseRepos';
@@ -100,6 +108,9 @@ function SupabaseAuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [users, setUsers] = useState<Usuario[]>([]);
   const [usersVersion, setUsersVersion] = useState(0);
+  // Recuerda la organización elegida por el SUPER_ADMIN entre reconstrucciones
+  // de sesión (ver comentario en `saveSupabaseOrgActiva`).
+  const orgActivaRef = useRef<string | null>(loadSupabaseOrgActiva());
 
   // Bootstrap + suscripción a cambios de sesión
   useEffect(() => {
@@ -111,7 +122,7 @@ function SupabaseAuthProvider({ children }: { children: ReactNode }) {
       if (!profile || !profile.activo) return null;
       return {
         user: toPublico(profile),
-        organizacionActivaId: profile.rol === 'SUPER_ADMIN' ? null : profile.organizacionId,
+        organizacionActivaId: profile.rol === 'SUPER_ADMIN' ? orgActivaRef.current : profile.organizacionId,
         expiresAt,
       };
     }
@@ -183,6 +194,8 @@ function SupabaseAuthProvider({ children }: { children: ReactNode }) {
     void supabase.auth.signOut();
     setSession(null);
     setUsers([]);
+    orgActivaRef.current = null;
+    saveSupabaseOrgActiva(null);
   }, []);
 
   const cambiarOrganizacionActiva = useCallback((organizacionActivaId: string | null) => {
@@ -191,6 +204,8 @@ function SupabaseAuthProvider({ children }: { children: ReactNode }) {
       if (prev.user.rol !== 'SUPER_ADMIN') return prev;
       return { ...prev, organizacionActivaId };
     });
+    orgActivaRef.current = organizacionActivaId;
+    saveSupabaseOrgActiva(organizacionActivaId);
   }, []);
 
   const crearUsuario = useCallback<AuthContextValue['crearUsuario']>(async () => {

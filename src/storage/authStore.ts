@@ -5,6 +5,7 @@ import { globalKey, globalPath, STORAGE_ROOT } from './tenantRepository';
 
 const KEY_USERS = globalKey('users');
 const KEY_SESSION = `${STORAGE_ROOT}.session`;
+const KEY_SUPABASE_ORG_ACTIVA = `${STORAGE_ROOT}.supabaseOrgActiva`;
 
 /** Path lógico para el espejo en disco. */
 export const USERS_PATH = globalPath('users');
@@ -84,5 +85,26 @@ export function saveSession(session: Session | null): void {
     localStorage.removeItem(KEY_SESSION);
   } else {
     localStorage.setItem(KEY_SESSION, JSON.stringify(session));
+  }
+}
+
+/**
+ * Organización activa elegida por el SUPER_ADMIN en modo Supabase.
+ *
+ * La sesión de Supabase Auth se reconstruye desde cero en cada evento de
+ * `onAuthStateChange` (refresh de token, cambio de pestaña, etc.), por lo
+ * que `organizacionActivaId` no puede vivir solo en el estado de React: se
+ * perdería en cada reconstrucción. Se persiste aquí para sobrevivir tanto a
+ * esas reconstrucciones como a un F5 real.
+ */
+export function loadSupabaseOrgActiva(): string | null {
+  return localStorage.getItem(KEY_SUPABASE_ORG_ACTIVA);
+}
+
+export function saveSupabaseOrgActiva(organizacionId: string | null): void {
+  if (organizacionId === null) {
+    localStorage.removeItem(KEY_SUPABASE_ORG_ACTIVA);
+  } else {
+    localStorage.setItem(KEY_SUPABASE_ORG_ACTIVA, organizacionId);
   }
 }

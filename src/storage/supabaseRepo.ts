@@ -47,16 +47,38 @@ export function createSupabaseRepo<
   }
   const client = supabase;
 
+  /**
+   * PostgREST limita cada respuesta a `db-max-rows` filas (1000 por defecto
+   * en Supabase) y trunca en silencio sin marcar error (HTTP 200 con menos
+   * filas de las que existen). Tablas como `marcas` superan eso por tenant,
+   * así que hay que paginar con `.range()` hasta agotar los resultados.
+   */
+  const PAGE_SIZE = 1000;
+
+  async function fetchAllPages(
+    build: () => ReturnType<ReturnType<typeof client.from>['select']>,
+  ): Promise<Row[]> {
+    const out: Row[] = [];
+    let from = 0;
+    for (;;) {
+      const { data, error } = await build().range(from, from + PAGE_SIZE - 1);
+      if (error) throw new Error(`[${table}] fetch: ${error.message}`);
+      const page = (data ?? []) as Row[];
+      out.push(...page);
+      if (page.length < PAGE_SIZE) break;
+      from += PAGE_SIZE;
+    }
+    return out;
+  }
+
   async function loadForTenant(orgId: string): Promise<T[]> {
-    const { data, error } = await client.from(table).select('*').eq('organizacion_id', orgId);
-    if (error) throw new Error(`[${table}] loadForTenant: ${error.message}`);
-    return (data ?? []).map((r) => mapper.fromDb(r as Row));
+    const rows = await fetchAllPages(() => client.from(table).select('*').eq('organizacion_id', orgId));
+    return rows.map((r) => mapper.fromDb(r));
   }
 
   async function loadAll(): Promise<T[]> {
-    const { data, error } = await client.from(table).select('*');
-    if (error) throw new Error(`[${table}] loadAll: ${error.message}`);
-    return (data ?? []).map((r) => mapper.fromDb(r as Row));
+    const rows = await fetchAllPages(() => client.from(table).select('*'));
+    return rows.map((r) => mapper.fromDb(r));
   }
 
   async function upsert(item: T): Promise<void> {
