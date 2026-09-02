@@ -252,12 +252,12 @@ export function indexIncidentes(
 }
 
 /**
- * Compone la observación final del día combinando:
- *  - El incidente registrado (si existe).
- *  - La observación auto-calculada por buildDetalleAsistencia.
- *  - El override manual del usuario, que tiene prioridad absoluta:
- *      * `cambiar` reemplaza todo con un texto explícito.
- *      * `limpiar` deja la observación vacía.
+ * Compone la observación final del día, en orden de prioridad:
+ *  1. El override manual del usuario (`cambiar` = texto explícito, `limpiar` = vacío).
+ *  2. La Justificación (incidente) registrada, si existe.
+ *  3. "Sin Justificar" para días que requieren justificación (no Normal ni Día Libre)
+ *     y no tienen ni override ni incidente.
+ *  4. Vacío para días Normal o Día Libre sin novedad.
  */
 export function composeObservacion(
   detalle: DetalleDiaAsistencia,
@@ -267,15 +267,13 @@ export function composeObservacion(
   if (override?.accion === 'cambiar') return override.texto ?? '';
   if (override?.accion === 'limpiar') return '';
 
-  const partes: string[] = [];
   if (incidente) {
     const label = INCIDENTE_BY_TIPO[incidente.tipo].label.toUpperCase();
-    partes.push(
-      incidente.descripcion ? `${label} (${incidente.descripcion})` : label,
-    );
+    return incidente.descripcion ? `${label} (${incidente.descripcion})` : label;
   }
-  if (detalle.observacion) partes.push(detalle.observacion);
-  return partes.join(' · ');
+
+  const necesitaJustificacion = detalle.estado !== 'Normal' && detalle.estado !== 'Día Libre';
+  return necesitaJustificacion ? 'Sin Justificar' : '';
 }
 
 export interface ResumenAsistencia {

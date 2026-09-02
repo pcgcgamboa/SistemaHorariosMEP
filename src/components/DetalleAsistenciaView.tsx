@@ -471,25 +471,17 @@ export function DetalleAsistenciaView({
             </tr>
           </thead>
           <tbody>
-            {detalle.map((d) => {
+            {detalleVisible.map((d) => {
               const m = marcasPorFecha.get(d.fecha);
               const entradaTs = m?.entrada ?? '';
               const salidaTs = m?.salida ?? '';
               const override = overridesMap.get(d.fecha);
               const incidente = incidentesMap.get(d.fecha);
-              // Default observation for print (excludes Normal / Día Libre when no incidente)
-              const baseObs = d.estado !== 'Normal' && d.estado !== 'Día Libre'
-                ? (d.observacion || d.estado)
-                : '';
-              const obsFinal = composeObservacion(
-                { ...d, observacion: baseObs },
-                override,
-                incidente,
-              );
+              const obsFinal = composeObservacion(d, override, incidente);
               return (
                 <tr key={d.fecha}>
-                  <td className="pr-col-fecha">{entradaTs || (d.marcaEntrada ? `${formatFecha(d.fecha)} ${d.marcaEntrada}` : '')}</td>
-                  <td className="pr-col-fecha">{salidaTs || (d.marcaSalida ? `${formatFecha(d.fecha)} ${d.marcaSalida}` : '')}</td>
+                  <td className="pr-col-fecha">{entradaTs || (d.marcaEntrada ? `${formatFecha(d.fecha)} ${d.marcaEntrada}` : formatFecha(d.fecha))}</td>
+                  <td className="pr-col-fecha">{salidaTs || (d.marcaSalida ? `${formatFecha(d.fecha)} ${d.marcaSalida}` : formatFecha(d.fecha))}</td>
                   <td className="pr-col-dia">{DIAS_LABEL[d.dia]}</td>
                   <td className="pr-col-hora">{d.horarioEntrada ?? 'LIBRE'}</td>
                   <td className="pr-col-hora">{d.horarioSalida ?? 'LIBRE'}</td>
